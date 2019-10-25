@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>footer_facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="19" height="19"></rect>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.600000024">
+        <g id="Artboard" transform="translate(-116.000000, -322.000000)">
+            <g id="Stacked-Group-2" transform="translate(82.000000, 322.000000)">
+                <g id="footer_facebook" transform="translate(34.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#080808" xlink:href="#path-1"></use>
+                    <g id="facebook" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+                        <g transform="translate(5.000000, 1.000000)" id="Path">
+                            <path d="M8.35521144,8.9374961 L8.76021441,5.90380819 L5.86444312,5.90380819 L5.86444312,4.1546548 C5.86444312,3.30740863 5.98999404,2.72956331 7.24955331,2.72956331 L8.86956522,2.72956331 L8.86956522,0.117546307 C8.08687079,0.0345850787 7.29984234,-0.00452425076 6.51244789,0.000415499778 C3.83942823,0.000415499778 2.38141751,1.36303722 2.38141751,3.86182778 L2.38141751,5.90380819 L0,5.90380819 L0,8.9374961 L2.38141751,8.9374961 L2.38141751,17 L5.86444312,17 L5.86444312,8.9374961 L8.35521144,8.9374961 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

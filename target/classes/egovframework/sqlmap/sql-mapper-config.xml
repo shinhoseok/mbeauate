@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<!-- egovMap -->
+		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+		<typeAlias alias="fileVO" type="egovframework.cmmn.service.FileVO"/>
+		<!-- 로그인 VO -->
+		<typeAlias alias="loginVO" type="com.beauate.m.login.service.LoginVO"/>
+		<!-- 사용자 VO -->
+		<typeAlias alias="userVO" type="com.beauate.m.user.service.UserVO"/>
+		<typeAlias alias="UserStatsVO" type="com.beauate.m.user.service.UserStatsVO"/>
+		<!-- 관리자 권한관리 VO -->
+		<typeAlias alias="roleVO" type="com.beauate.m.role.service.RoleVO" />
+		<!-- 관리자 메뉴관리 VO -->
+		<typeAlias alias="menuVO" type="com.beauate.m.admin.menu.service.MenuVO"/>
+		<!-- 메뉴로그 VO -->
+		<typeAlias alias="menuStatsVO" type="com.beauate.m.admin.menu.service.MenuStatsVO"/>
+		<!-- 오프라인클래스 VO -->
+		<typeAlias alias="classVO" type="com.beauate.m.offClass.service.ClassVO"/>
+		<!-- 리뷰VO -->
+		<typeAlias alias="reviewVO" type="com.beauate.m.review.service.ReviewVO"/>
+		<!-- 댓글VO -->
+		<typeAlias alias="commentVO" type="com.beauate.m.comment.service.CommentVO"/>
+		<!-- 결재VO -->
+		<typeAlias alias="payVO" type="com.beauate.m.pay.service.PayVO"/>
+		<!-- 관리자 공통코드관리 VO -->
+		<typeAlias alias="codeVO" type="com.beauate.m.code.service.CodeVO"/>
+		<!-- 찜 VO -->
+		<typeAlias alias="jjimVO" type="com.beauate.m.jjim.service.JjimVO"/>
+		<!-- 쿠폰VO -->
+		<typeAlias alias="couponVO" type="com.beauate.m.coupon.service.CouponVO"/>
+		<!-- 쿠폰내역VO -->
+		<typeAlias alias="couponHistoryVO" type="com.beauate.m.couponhistory.service.CouponHistoryVO"/>
+	</typeAliases>
+</configuration>

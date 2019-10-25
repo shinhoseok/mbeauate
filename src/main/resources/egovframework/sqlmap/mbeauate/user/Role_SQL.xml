@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 의 interface 를 찾아가서 쿼리문의 id와 interface의 method 명으로 매핑 -->
+<mapper namespace="com.beauate.m.role.service.RoleDao">
+	
+	<!--
+	쿼리명		: 사용자 권한 등록
+	설명			: 사용자 권한 등록
+	작성자		: 신호석
+	수정일				수정자			수정내용
+	=============		========		===================
+	2019. 07.04.		신호석			최초 생성
+	-->
+	<insert id="insertRoleUserProc" parameterType="roleVO">
+		<![CDATA[
+		INSERT INTO RL_USER_MPPG 
+								(MPPG_ID, RL_ID, U_SQ, RG_ID, RG_DT)
+						VALUES
+								(#{mppgId}, #{rlId}, #{usrId}, #{rgId}, SYSDATE)
+		]]>
+	</insert>
+
+</mapper>

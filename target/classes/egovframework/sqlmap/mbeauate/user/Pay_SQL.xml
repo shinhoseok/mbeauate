@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beauate.m.pay.service.PayDao">
+	
+	<resultMap id="payResultMap" type="com.beauate.m.pay.service.PayVO">
+		<id column="pay_sq" property="payId" />
+		<result column="c_sq" property="classId" />
+		<result column="u_sq" property="usrId" />
+		<result column="cpn_sq" property="couponId" />
+		<result column="pay_dt" property="payDt" />
+		<result column="pay_st" property="paySt" />
+		<result column="pay_method_st" property="payMethodSt" />
+		<result column="c_cost_no" property="classCostNo" />
+		<result column="c_title" property="classTitle" />
+		<result column="c_adr" property="classAdr" />
+		<result column="c_st" property="classSt" />
+		<result column="c_end_dt" property="classEndDt" />
+		<result column="u_start_dt" property="classStartDt" />
+		<result column="img_sq" property="atchFileId" />
+		<result column="cpn_rate" property="cpnRate" />
+		<result column="c_area_st" property="classAreaSt" />
+		<result column="pay_cost_no" property="payCostNo" />
+		<result column="c_big_no" property="classBigNo" />
+		<result column="c_apply_no" property="classApplyNo" />
+	</resultMap>
+
+	<sql id="payGubunSql">
+		<where>
+			a.u_sq = #{usrId}
+			AND a.del_yn = 'N'
+			<if test="classSt != null and  classSt != ''">
+				AND b.u_start_dt <![CDATA[ < ]]> sysdate
+				OR a.pay_st = #{paySt}
+			</if>
+			<if test="paySt != null and  paySt != ''">
+				<choose>
+					<when test="paySt == '1'.toString()">
+						AND a.pay_st = #{paySt}
+					</when>
+					<otherwise>
+						AND a.pay_st != '1'
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 쿼리명 : 마이페이지 클래스 결제 리스트 카운트
+	설명 : 마이페이지 클래스 결제리스트 카운트
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 9.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 9.17
+	-->
+	<select id="selectPayListCnt" parameterType="payVO" resultType="int">
+	SELECT 
+		COUNT (*) CNT
+	FROM 
+		pay a
+		LEFT JOIN off_class b ON  a.c_sq = b.c_sq
+		LEFT JOIN admin_cpn d ON a.cpn_sq = d.cpn_sq
+		LEFT JOIN common_cd_scls f ON (b.c_st = f.mcls_cd AND f.lcls_cd='CCT')
+		LEFT JOIN common_cd_scls h ON (a.pay_st = h.mcls_cd AND h.lcls_cd='PAY')
+		LEFT JOIN common_cd_scls i ON (a.pay_method_st = i.mcls_cd AND i.lcls_cd='PBB')
+		LEFT JOIN common_cd_scls g ON (b.c_area_st = g.mcls_cd AND g.lcls_cd='ARA')
+		<include refid="payGubunSql"/>
+	</select>
+	
+	<!-- 쿼리명 : 마이페이지 클래스 결제 리스트
+	설명 : 마이페이지 클래스 결제리스트
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 9.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 9.17
+	-->
+	<select id="selectPayList" parameterType="payVO" resultMap="payResultMap">
+	SELECT
+		e.*
+	FROM
+		(
+		SELECT 
+			ROW_NUMBER() OVER(ORDER BY a.pay_dt DESC) RNUM,
+			a.pay_sq,
+			a.c_sq,
+			a.u_sq,
+			a.cpn_sq,
+			a.pay_dt,
+			a.pay_st,
+			a.pay_method_st,
+			a.pay_cost_no,
+			b.c_cost_no,
+			b.c_title,
+			b.c_adr,
+			b.u_start_dt,
+			b.c_st,
+			b.c_end_dt,
+			b.c_big_no,
+			b.c_apply_no,
+			f.mcls_nm AS classStNm,
+			g.mcls_nm as areaNm,
+			h.mcls_nm AS payStNm,
+			i.mcls_nm AS payMethodNm,
+			(SELECT c.file_stre_cours || '/' || c.stre_file_nm FROM comtnfiledetail c WHERE c.atch_file_id = b.img_sq AND file_cn='M2') AS imgSrc2,
+			(SELECT c.file_stre_cours || '/' || c.stre_file_nm FROM comtnfiledetail c WHERE c.atch_file_id = b.img_sq AND file_cn='M3') AS imgSrc3,
+			b.img_sq,
+			d.cpn_rate
+		FROM 
+			pay a
+			LEFT JOIN off_class b ON  a.c_sq = b.c_sq
+			LEFT JOIN admin_cpn d ON a.cpn_sq = d.cpn_sq
+			LEFT JOIN common_cd_scls f ON (b.c_st = f.mcls_cd AND f.lcls_cd='CCT')
+			LEFT JOIN common_cd_scls h ON (a.pay_st = h.mcls_cd AND h.lcls_cd='PAY')
+			LEFT JOIN common_cd_scls i ON ( a.pay_method_st = i.mcls_cd AND i.lcls_cd='PBB')
+			LEFT JOIN common_cd_scls g ON (b.c_area_st = g.mcls_cd AND g.lcls_cd='ARA')
+		<include refid="payGubunSql"/>
+		) e
+	WHERE
+		e.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+	</select>
+	
+	<!-- 쿼리명 : 결제 등록
+	설명 : 결제 등록
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 9.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 9.17
+	-->
+	<insert id="insertPayProc" parameterType="payVO">
+		<![CDATA[
+			INSERT INTO
+				pay (
+					pay_sq,
+					c_sq,
+					u_sq,
+					cpn_sq,
+					pay_dt,
+					pay_st,
+					pay_method_st,
+					pay_cost_no,
+					del_yn
+				)
+			VALUES
+				(
+					#{payId},
+					#{classId},
+					#{usrId},
+					#{couponId},
+					sysdate,
+					#{paySt},
+					#{payMethodSt},
+					#{payCostNo},
+					'N'
+				)]]>
+	</insert>
+
+	<!-- 쿼리명 : 결재내역삭제
+	설명 : 결재내역삭제
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<update id="deletePayProc" parameterType="payVO">
+		UPDATE pay SET del_yn = #{delYn} WHERE pay_sq = #{payId}
+	</update>
+	
+	<!-- 쿼리명 : 환불처리
+	설명 : 환불처리
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<update id="updatePayRefundProc" parameterType="payVO">
+		UPDATE pay SET pay_st = #{paySt} WHERE pay_sq = #{payId}
+	</update>
+	
+	<sql id="payMngGubunSql">
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<choose>
+					<when test="searchCondition == 'usrNm'">
+						AND h.u_nm LIKE '%'|| #{searchKeyword} ||'%'
+					</when>
+					<when test="searchCondition == 'classTitle'">
+						AND b.c_title LIKE '%'|| #{searchKeyword} ||'%'
+					</when>
+					<otherwise>
+						AND h.u_email LIKE '%'|| #{searchKeyword} ||'%'
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 쿼리명 : 결제관리 리스트 카운트
+	설명 : 결제관리 리스트 카운트
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<select id="selectPayMngListCnt" parameterType="payVO" resultType="int">
+		SELECT
+			COUNT(*) cnt
+		FROM
+			pay a
+			LEFT JOIN off_class b ON a.c_sq = b.c_sq
+			LEFT JOIN admin_cpn d ON a.cpn_sq = d.cpn_sq
+			LEFT JOIN users h ON a.u_sq = h.u_sq
+			LEFT JOIN common_cd_scls f ON (a.pay_st = f.mcls_cd AND f.lcls_cd = 'PAY')
+			LEFT JOIN common_cd_scls g ON (a.pay_method_st = g.mcls_cd AND g.lcls_cd = 'PBB')
+		<include refid="payMngGubunSql"/>
+	</select>
+	
+	<!-- 쿼리명 : 결제관리 리스트
+	설명 : 결제관리 리스트
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<select id="selectPayMngList" parameterType="payVO" resultMap="payResultMap">
+		SELECT
+			e.*
+		FROM
+			(
+				SELECT
+					ROW_NUMBER() OVER(
+				<choose>
+					<when test="sortSubject == 'usrNm'">
+						ORDER BY h.u_nm
+					</when>
+					<when test="sortSubject == 'payMethodNm'">
+						ORDER BY g.mcls_nm
+					</when>
+					<when test="sortSubject == 'payStNm'">
+						ORDER BY f.mcls_nm
+					</when>
+					<when test="sortSubject == 'classTitle'">
+						ORDER BY b.c_title
+					</when>
+					<when test="sortSubject == 'payCostNo'">
+						ORDER BY a.pay_cost_no
+					</when>
+					<otherwise>
+						ORDER BY a.pay_dt
+					</otherwise>
+				</choose>
+				<choose>
+					<when test="sortDescend == 'asc'">
+						ASC
+					</when>
+					<otherwise>
+						DESC
+					</otherwise>
+				</choose>
+						) RNUM,
+					a.pay_sq,
+					a.c_sq,
+					a.u_sq,
+					a.cpn_sq,
+					a.pay_dt,
+					a.pay_st,
+					a.pay_method_st,
+					a.pay_cost_no,
+					b.c_cost_no,
+					b.c_title,
+					b.c_adr,
+					b.u_start_dt,
+					b.c_st,
+					b.c_end_dt,
+					b.c_big_no,
+					b.c_apply_no,
+					f.mcls_nm AS payStNm,
+					g.mcls_nm AS payMethodNm,
+					b.img_sq,
+					d.cpn_rate,
+					h.u_email AS emailAddr,
+					h.u_nm AS usrNm
+				FROM
+					pay a
+					LEFT JOIN off_class b ON a.c_sq = b.c_sq
+					LEFT JOIN admin_cpn d ON a.cpn_sq = d.cpn_sq
+					LEFT JOIN users h ON a.u_sq = h.u_sq
+					LEFT JOIN common_cd_scls f ON (a.pay_st = f.mcls_cd AND f.lcls_cd = 'PAY')
+					LEFT JOIN common_cd_scls g ON (a.pay_method_st = g.mcls_cd AND g.lcls_cd = 'PBB')
+				<include refid="payMngGubunSql"/>
+			) e
+		WHERE
+			e.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+	</select>
+</mapper>
+

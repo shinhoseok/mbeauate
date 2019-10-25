@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beauate.m.user.service.UserDao">
+	
+	<!-- 쿼리명 : 사용자아이디 중복체크
+	설명 : 사용자아이디 중복체크
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<select id="selectUserIdChk" parameterType="userVO" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*)
+		  FROM USERS B
+		 WHERE U_EMAIL = TRIM(#{emailAddr})
+		 ]]>
+	</select>
+	
+	<!-- 쿼리명 : 사용자 등록
+	설명 : 사용자 등록
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<insert id="insertUserProc" parameterType="userVO">
+		<![CDATA[
+		INSERT INTO USERS (	    U_SQ, 
+								U_PW, 
+		   						U_NM, 
+		   						PHONE_NO, 
+		   						U_EMAIL, 
+		   						JOIN_DT,
+		   						LOGIN_DT,
+		   						U_ST ) 
+					VALUES (	#{usrId},
+								#{usrPw}, 
+								#{usrNm}, 
+								#{mblPno, jdbcType=VARCHAR}, 
+								#{emailAddr, jdbcType=VARCHAR}, 
+								sysdate,
+								sysdate,
+								#{userSt})
+		]]>		
+	</insert>
+	
+	<!-- 쿼리명 : 사용자 통계 등록
+	설명 : 사용자 통계 등록
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 6.22     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 6.22
+	-->
+	<insert id="insertUserStatisticsProc" parameterType="UserStatsVO">
+		<![CDATA[
+		INSERT INTO ACCESS_LOG
+			(ACCESS_LOG_ID,
+			ACCESS_IP,
+			U_SQ,
+			ACCESS_DT) 
+		VALUES 		(#{accessLogId},
+		             #{accessIp},
+		             #{accessId},
+		             SYSDATE)
+		]]>
+	</insert>
+	
+    <!-- 쿼리명 : 사용자 비밀번호 초기화
+	설명 : 사용자 비밀번호 초기화
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<update id="userPwReset" parameterType="userVO">
+		<![CDATA[
+		UPDATE USERS
+		SET    U_PW  = #{usrPw}
+	    ]]>
+	    <where>
+	    	<choose>
+	    		<when test="usrId != null and  usrId != ''">
+	    			AND U_SQ  = #{usrId}
+	    		</when>
+	    		<otherwise>
+	    			AND u_email  = #{emailAddr}
+	    		</otherwise>
+	    	</choose>
+	    </where>
+	</update>
+	
+	<!-- 쿼리명 : 사용자 상세정보 (이메일로 검색)
+	설명 : 사용자 상세정보 (이메일로 검색)
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 9.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 9.17
+	-->
+	<select id="selectUserDetail" parameterType="userVO" resultType="userVO">
+		<![CDATA[
+		SELECT B.U_SQ usrId,
+		       B.U_PW usrPw,
+		       B.U_NM usrNm,
+		       B.PHONE_NO mblPno,
+		       B.U_EMAIL emailAddr,
+		       B.JOIN_DT joinDt,
+		       B.LOGIN_DT loginDt,
+			   B.U_OUT_DT userOutDt
+		  FROM USERS B
+		 ]]>
+		 <where>
+			<if test="usrId != '' and usrId != null">
+				  AND B.U_SQ = #{usrId}
+			</if>
+			<if test="emailAddr != '' and emailAddr != null">
+				  AND B.U_EMAIL = #{emailAddr}
+			</if>
+		</where>
+	</select>
+</mapper>

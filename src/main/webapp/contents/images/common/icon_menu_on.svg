@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>icon_menu_on</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="25" height="25"></rect>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-69.000000, -62.000000)">
+            <g id="icon_menu_on" transform="translate(69.000000, 62.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Rectangle" fill="#F9F9F9" xlink:href="#path-1"></use>
+                <g id="메뉴" mask="url(#mask-2)" fill="#7630FE" fill-rule="nonzero">
+                    <g transform="translate(3.000000, 5.000000)" id="Rectangle">
+                        <rect x="0" y="0" width="22" height="2" rx="1"></rect>
+                        <rect x="0" y="7" width="22" height="2" rx="1"></rect>
+                        <rect x="0" y="15" width="22" height="2" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

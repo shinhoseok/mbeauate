@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>icon_my_on</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="25" height="25"></rect>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-346.000000, -182.000000)">
+            <g id="icon_my_on" transform="translate(346.000000, 182.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Rectangle" fill="#F9F9F9" xlink:href="#path-1"></use>
+                <g id="my" mask="url(#mask-2)" stroke="#6A2CFE" stroke-width="2">
+                    <g transform="translate(3.000000, 2.000000)">
+                        <circle id="Oval" cx="9.27777778" cy="5.27777778" r="5.27777778"></circle>
+                        <path d="M4.26325641e-14,20.6767677 C4.26325641e-14,15.5589226 3.03872054,13 9.11616162,13 C15.1936027,13 18.2323232,15.5589226 18.2323232,20.6767677" id="Path-9" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
