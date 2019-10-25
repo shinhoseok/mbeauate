@@ -179,17 +179,14 @@ public class OffClassServiceImpl implements OffClassService{
 		
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		String today = DateUtil.getCurrentYearMonthDay();
-
-		//pageIndex를 받는다.
-		int pageUnit = 1; //16개씩 페이징
+		
+		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = classVO.getPageIndex();
+		classVO.setFirstIndex(1);
 		if(pageIndex == 1) {
-			classVO.setFirstIndex(1);
 			classVO.setLastIndex(pageUnit);
 		} else {
-			int firstIndex = ((pageIndex-1)*pageUnit)+1;
 			int lastIndex = pageUnit*pageIndex;
-			classVO.setFirstIndex(firstIndex);
 			classVO.setLastIndex(lastIndex);
 		}
 				

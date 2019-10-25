@@ -216,17 +216,8 @@ $(function() {
 
 //현재페이지 전역변수
 var cuurPage = 0;
-var totalCnt = "${rslt.totalCnt}"; //토탈페이지 전역변수
-var pageUnit = 1; //몇개씩보여줄것인가?
-var cuurNum = 0; //현재페이지번호
-//페이징
 var fn_searchList = function(){
-	if(cuurNum >= totalCnt) {
-		alert("마지막 페이지입니다.");
-		return;
-	}
 	cuurPage = cuurPage + 1;
-	cuurNum = cuurNum+pageUnit;
 	fn_allSearchList();
 };
 
@@ -242,13 +233,7 @@ var fn_allSearchList = function() {
 		dataType: 'html',
 		data: params,
 		success: function(r) {
-			$('#targetAllOffList').append(r);
-			$("#btn_more").children().remove();
-			if(cuurNum >= totalCnt) {
-				$("#btn_more").append('<sapn class="num">('+totalCnt+'/'+totalCnt+')</sapn>');
-			} else {
-				$("#btn_more").append('<sapn class="num">('+cuurNum+'/'+totalCnt+')</sapn>');
-			}
+			$('#targetAllOffList').html(r);
 		},
 		error : function(r) {
 			console.log(r);

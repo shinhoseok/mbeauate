@@ -53,5 +53,15 @@
 	</c:choose>
 </div>
 <div class="btn_more">
-	<a id="btn_more" href="javascript:void(0);" onclick="fn_searchList();">클래스 더보기<sapn class="num"></sapn></a>
+	<c:set var="lastIndex" value="${classVO.lastIndex}"/>
+	<c:set var="totalCnt" value="${rslt.selectListCnt}"/>
+	<c:choose>
+		<c:when test="${lastIndex >= totalCnt}">
+			<a id="btn_more" href="javascript:alert('마지막 페이지입니다.');">클래스 더보기<sapn class="num">(${totalCnt }/${totalCnt})</sapn></a>
+		</c:when>
+		<c:otherwise>
+			<a id="btn_more" href="javascript:void(0);" onclick="fn_searchList();">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a>
+		</c:otherwise>
+	</c:choose>
+	
 </div>

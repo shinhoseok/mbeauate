@@ -76,6 +76,7 @@ public class OffClassController {
 	public String selectOffClassAjaxList(ClassVO classVO, ModelMap model) throws Exception {
 		Map<String, Object> rsltMap = offClassService.selectAllOffClassList(classVO);
 		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("classVO", classVO);
 		return "/offClass/offClassAllList";
 	}
 }
