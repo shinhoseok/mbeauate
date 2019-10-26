@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${cssPath}/common.css" />
 <link rel="stylesheet" type="text/css" href="${cssPath}/reset.css" />
 <link rel="stylesheet" type="text/css" href="${cssPath}/input.css">
-<script type="text/javascript" src="${scriptPath}/jquery/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="${scriptPath}/jquery/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 <!-- 오늘날짜 todayNum -->
@@ -59,7 +59,7 @@
 								<fmt:parseDate value="${list.classStartDt}" var="classStartDtParseDate" pattern="yyyy-MM-dd"/>
 								<fmt:parseNumber value="${classStartDtParseDate.time / (1000*60*60*24)}" integerOnly="true" var="classStartDtNum"/>
 								<div class="list2_item">
-									<a href="javascript:void(0);" onclick="javascript:fn_selectOffClassDetail('${list.classId }');">
+									<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId }">
 										<div class="img_wrap">
 											<div class="img">
 												<img src="${uploadPath}/<c:out value="${list.imgSrc }"/>" alt="" />
@@ -114,7 +114,7 @@
 										<fmt:parseDate value="${list.classStartDt}" var="classStartDtParseDate" pattern="yyyy-MM-dd"/>
 										<fmt:parseNumber value="${classStartDtParseDate.time / (1000*60*60*24)}" integerOnly="true" var="classStartDtNum"/>
 										<li class="list_theme_item">
-											<a href="javascript:void(0);" onclick="javascript:fn_selectOffClassDetail('${list.classId }');">
+											<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId }">
 												<c:choose>
 													<c:when test="${classStartDtNum < todayNum or list.classSt eq 4}">
 														<div class="img">

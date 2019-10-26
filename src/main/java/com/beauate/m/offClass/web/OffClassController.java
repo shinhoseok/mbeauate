@@ -11,8 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.beauate.m.login.service.LoginVO;
 import com.beauate.m.offClass.service.ClassVO;
 import com.beauate.m.offClass.service.OffClassService;
+import com.beauate.m.review.service.ReviewVO;
 
 @Controller
 public class OffClassController {
@@ -78,5 +80,61 @@ public class OffClassController {
 		model.addAttribute("rslt", rsltMap);
 		model.addAttribute("classVO", classVO);
 		return "/offClass/offClassAllList";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 오프라인클래스 상세화면
+	 * 2. 처리내용 : 오프라인클래스 상세화면
+	 * </pre>
+	 * @Method Name : selectOffClassDetail
+	 * @date : 2019. 10. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param classVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/offclass/a/t/selectOffClassDetail.do")
+	public String selectOffClassDetail(@ModelAttribute("classVO") ClassVO classVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		classVO.setUsrId(sessionVO.getUsrId());
+		Map<String, Object> rsltMap = offClassService.selectOffClassDetail(classVO);
+		model.addAttribute("rslt", rsltMap);
+		return "/offClass/offClassDetail";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 오프라인클래스 상세화면
+	 * 2. 처리내용 : 오프라인클래스 상세화면
+	 * </pre>
+	 * @Method Name : selectReviewList
+	 * @date : 2019. 10. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param classVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/offclass/a/n/selectReviewList.do")
+	public String selectReviewList(ReviewVO reviewVO, ModelMap model) throws Exception {
+		Map<String, Object> rsltMap = offClassService.selectReviewList(reviewVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("reviewVO", reviewVO);
+		return "/offClass/offClassReviewList";
 	}
 }

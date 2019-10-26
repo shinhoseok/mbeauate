@@ -32,7 +32,6 @@ import com.beauate.m.user.service.UserDao;
 import com.beauate.m.user.service.UserVO;
 
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
-import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Service("offClassService")
 public class OffClassServiceImpl implements OffClassService{
@@ -176,7 +175,6 @@ public class OffClassServiceImpl implements OffClassService{
 	 * @throws Exception
 	 */ 
 	public Map<String, Object> selectAllOffClassList(ClassVO classVO) throws Exception {
-		
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		String today = DateUtil.getCurrentYearMonthDay();
 		
@@ -189,12 +187,10 @@ public class OffClassServiceImpl implements OffClassService{
 			int lastIndex = pageUnit*pageIndex;
 			classVO.setLastIndex(lastIndex);
 		}
-				
-		List<ClassVO> selectList = null;
 		
+		List<ClassVO> selectList = null;
 		//총 카운트 
 		int cnt = offClassDao.selectClassMngListCnt(classVO);
-		
 		if(cnt > 0){
 			//리스트
 			selectList = offClassDao.selectClassMngList(classVO);
@@ -356,20 +352,20 @@ public class OffClassServiceImpl implements OffClassService{
 		
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(reviewVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(reviewVO.getPageUnit());
-		paginationInfo.setPageSize(reviewVO.getPageSize());
-		
-		reviewVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		reviewVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		reviewVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 16; //16개씩 페이징
+		int pageIndex = reviewVO.getPageIndex();
+		reviewVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			reviewVO.setLastIndex(pageUnit);
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			reviewVO.setLastIndex(lastIndex);
+		}
 		
 		List<ReviewVO> selectList = null;
 		
 		//총 카운트 
 		int cnt = reviewDao.selectReviewListCnt(reviewVO);
-		paginationInfo.setTotalRecordCount(cnt);
 		
 		if(cnt > 0){
 			//합계
@@ -441,7 +437,6 @@ public class OffClassServiceImpl implements OffClassService{
 			rsltMap.put("curriculumStarSum", curriculumStarSum);
 		}
 		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		

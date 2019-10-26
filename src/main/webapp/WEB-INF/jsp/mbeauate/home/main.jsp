@@ -37,7 +37,7 @@
 					</a></li>
 				</ul>
 				<div class="btn_more">
-					<a clas="icon_arr_more" href="#"> 클래스 더보기 </a>
+					<a clas="icon_arr_more" href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1"> 클래스 더보기 </a>
 				</div>
 			</div>
 			<!--//전문가 교육소식-->
@@ -49,32 +49,32 @@
 							각 분야의 뷰티전문가를 <br>만나보세요.
 						</p>
 					</h2>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_hair.png" />
 							</div> 헤어
 					</a></li>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=2">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_makeup.png" />
 							</div> 메이크업
 					</a></li>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=3">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_eyelash.png" />
 							</div> 속눈썹/반영구
 					</a></li>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=4">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_skin.png" />
 							</div> 피부/왁싱
 					</a></li>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=5">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_nail.png" />
 							</div> 네일
 					</a></li>
-					<li><a href="#">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=6">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_etc.png" />
 							</div> 기타

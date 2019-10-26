@@ -11,7 +11,7 @@
 				<fmt:parseDate value="${list.classStartDt}" var="classStartDtParseDate" pattern="yyyy-MM-dd"/>
 				<fmt:parseNumber value="${classStartDtParseDate.time / (1000*60*60*24)}" integerOnly="true" var="classStartDtNum"/>
 				<div class="list2_item">
-					<a href="#">
+					<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId }">
 						<div class="img_wrap">
 							<div class="img">
 								<img src="${uploadPath}/<c:out value="${list.imgSrc }"/>" alt="" />
@@ -63,5 +63,4 @@
 			<a id="btn_more" href="javascript:void(0);" onclick="fn_searchList();">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a>
 		</c:otherwise>
 	</c:choose>
-	
 </div>
