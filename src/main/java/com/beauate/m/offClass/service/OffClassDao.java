@@ -4,7 +4,7 @@ import java.util.List;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
-@Mapper("OffClassDao")
+@Mapper("offClassDao")
 public interface OffClassDao {
 	
 	/**

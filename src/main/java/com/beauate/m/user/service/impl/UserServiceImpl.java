@@ -133,4 +133,27 @@ public class UserServiceImpl extends EgovAbstractServiceImpl implements UserServ
 		userStatsVO.setAccessLogId(userStatsIdGnrService.getNextStringId());
 		userDao.insertUserStatisticsProc(userStatsVO);
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 상세정보
+	 * 2. 처리내용 : 사용자 상세정보를 불러온다.
+	 * </pre>
+	 * @Method Name : selectUser
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param userVO
+	 * @param 
+	 * @return
+	 * @throws Exception
+	 */ 
+	public UserVO selectUser(UserVO userVO) throws Exception {
+		return userDao.selectUser(userVO);
+	}
 }

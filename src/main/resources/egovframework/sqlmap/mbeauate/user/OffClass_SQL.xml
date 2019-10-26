@@ -63,8 +63,11 @@
 			LEFT JOIN common_cd_scls cd ON (c.c_area_st = cd.mcls_cd AND cd.lcls_cd='ARA')
 			LEFT JOIN common_cd_scls cd2 ON (c.c_st = cd2.mcls_cd AND cd.lcls_cd='CST')
 		<where>
+			<if test="classCtSt != null and classCtSt != ''">
+				AND c.c_category_st = #{classCtSt}
+			</if>
 			<if test="classAreaSt != null and classAreaSt != ''">
-				AND c.c_category_st = #{classAreaSt}
+				AND c.c_area_st = #{classAreaSt}
 			</if>
 			<if test="imgCnt != null and imgCnt != ''">
 				AND ROWNUM <![CDATA[ <= ]]> #{imgCnt}

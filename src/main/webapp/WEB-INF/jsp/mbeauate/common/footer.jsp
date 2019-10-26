@@ -8,17 +8,17 @@
 		</div>
 		<div>
 			<ul class="row sns">
-				<li><a href="#">인스타</a></li>
-				<li><a href="#">페이스북</a></li>
-				<li><a href="#">블로그</a></li>
+				<li><a href="javascript:void(0);">인스타</a></li>
+				<li><a href="javascript:void(0);">페이스북</a></li>
+				<li><a href="javascript:void(0);">블로그</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="info">
 		<ul class="row">
-			<li><a href="#">개인정보취급방침</a></li>
-			<li><a href="#">이용약관</a></li>
-			<li><a href="#">멘토문의</a></li>
+			<li><a href="javascript:alert('준비중 입니다.');">개인정보취급방침</a></li>
+			<li><a href="javascript:alert('준비중 입니다.');">이용약관</a></li>
+			<li><a href="javascript:alert('준비중 입니다.');">멘토문의</a></li>
 			<li><a href="#">공지사항</a></li>
 		</ul>
 	</div>

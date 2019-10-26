@@ -17,7 +17,7 @@
 <body>
 	<header>
 		<div class="sub_header">
-			<a class="icon_back" href="javascript:window.history.back();"></a>
+			<a class="icon_back" href="javascript:window.history.back();">뒤로</a>
 			<h1>상세정보</h1>
 			<a class="btn_home" href="${basePath}/home/a/n/main.do">홈</a>
 		</div>
@@ -25,11 +25,14 @@
 	<section class="class_detail">
 		<div>
 			<div class="class_tumb">
-				<div class="label_inner">
-					<div class="label num">20%</div>
-				</div>
 				<div class="slide_num_wrap">
-					<a class="icon_arr_prev" href="#"></a> <span class="num">1/5</span> <a class="icon_arr_next" href="#"></a>
+					<c:if test="${fn:length(rslt.sideImgVO) > 1}">
+						<a class="icon_arr_prev" href="javascript:void(0);" onclick="fn_imgMove('L');"></a>
+					</c:if>
+					<span class="num" id="slideNumText">1/${fn:length(rslt.sideImgVO)}</span>
+					<c:if test="${fn:length(rslt.sideImgVO) > 1}">
+						<a class="icon_arr_next" href="javascript:void(0);" onclick="fn_imgMove('R');"></a>
+					</c:if>
 				</div>
 				<!-- 오늘날짜 todayNum -->
 				<fmt:parseDate value="${rslt.today}" var="todayParseDate" pattern="yyyy-MM-dd"/> 
@@ -37,12 +40,23 @@
 				<!-- 개강일 classStartDtNum -->
 				<fmt:parseDate value="${rslt.resultVO.classStartDt}" var="classStartDtParseDate" pattern="yyyy-MM-dd"/>
 				<fmt:parseNumber value="${classStartDtParseDate.time / (1000*60*60*24)}" integerOnly="true" var="classStartDtNum"/>
-				<c:if test="${todayNum <= classStartDtNum or rslt.resultVO.classSt eq 1 or rslt.resultVO.classSt eq 2}">
+				<c:if test="${todayNum <= classStartDtNum}">
 					<div class="count">
 						<span>${((todayNum - classStartDtNum)*-1) +1 }일 남았어요!</span>
 					</div>
 				</c:if>
-				<img src="${uploadPath}/<c:out value="${rslt.resultVO.imgSrc }"/>"/>
+				<c:choose>
+					<c:when test="${fn:length(rslt.sideImgVO) != 0}">
+						<c:forEach items="${rslt.sideImgVO}" var="list" varStatus="i">
+							<div <c:if test="${!i.first}">style="display: none;"</c:if> id="photo_${i.index}" photoNum="${i.count}">
+								<img src="${uploadPath}/<c:out value="${list.imgSrc }"/>"/>
+							</div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div>등록된 이미지가 없습니다.</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="cont-nav">
 				<ul>
@@ -50,14 +64,13 @@
 					<li><a href="#location">오시는길</a></li>
 					<li><a href="#ask">문의</a></li>
 					<li><a href="#review">리뷰</a></li>
-					<li><a href="">취소/환불</a></li>
+					<li><a href="javascript:alert('준비중 입니다.');">취소/환불</a></li>
 				</ul>
 			</div>
 			<div class="class_tit">
 				<h3><c:out value="${rslt.resultVO.classTitle }"/></h3>
 			</div>
 			<div class="class_price">
-<!-- 				<span class="price_sale">20%</span><span class="">124,500원</span><span class="price_before">234,500원</span> -->
 				<span class=""><fmt:formatNumber value="${rslt.resultVO.classCost }" pattern="#,###" />원</span>
 			</div>
 			<div class="class_info line_t10g">
@@ -80,7 +93,6 @@
 				</div>
 			</div>
 			<div class="class_detail_img line_t10g">
-<%-- 				<img src="${uploadPath}/<c:out value="${rslt.resultVO.imgSrc2 }"/>"/> --%>
 				<img src="${imagePath}/sub/class_detail_mo.jpg" />
 			</div>
 			<div class="class_location" id="location">
@@ -119,8 +131,8 @@
 		</div>
 		<div class="floating_btn">
 			<c:choose>
-				<c:when test="${rslt.resultVO.classSt eq '3' or rslt.resultVO.classSt eq '4' or todayNum >= classStartDtNum}"> <!-- 마감되었거나, 사람꽉찻을때 -->
-					<button type="button" class="btn_txt" id="alarmBtn" onclick="javascript:fn_selectAlarmPop();">알람신청</button>
+				<c:when test="${rslt.resultVO.classSt eq '3' or rslt.resultVO.classSt eq '4' or todayNum > classStartDtNum}"> <!-- 마감되었거나, 사람꽉찻을때 -->
+					<button type="button" class="btn_txt" id="alarmBtn" onclick="javascript:fn_selectAlarmPop('${rslt.resultVO.classId}');">알람신청</button>
 				</c:when>
 				<c:when test="${rslt.resultVO.classGb eq '2'}"><!-- 외부일때 -->
 					<button type="button" class="btn_txt" onclick="javascript:fn_outWebAdrOffClass('<c:out value="${rslt.resultVO.classWebAdr}"/>');">클래스 외부접수</button>
@@ -140,7 +152,7 @@
 			</c:choose>
 		</div>
 	</section>
-
+<input type="hidden" id="shareUrlAddress">
 <script type="text/javascript">
 $(function() {
 	//리뷰리스트
@@ -173,9 +185,43 @@ var fn_selectReviewList = function() {
 	});
 };
 
+//슬라이드 이미지
+var fn_imgMove = function(gubun) {
+	var current = $("div[id^='photo_']:visible");
+	var currentImgNum = current.attr("photoNum")*1+1;
+	var totalImgNum = "${fn:length(rslt.sideImgVO)}";
+	if(gubun == 'R') {
+		if(current.is("div[id^='photo_']:last")) {
+			alert("마지막 사진입니다.");
+		} else {
+			current.hide();
+			current.next().show();
+			$("#slideNumText").text(current.attr("photoNum")*1+1+"/"+totalImgNum);
+		}
+	} else {
+		if(current.is("div[id^='photo_']:first")) {
+			alert("첫 사진입니다.");
+		} else {
+			current.hide();
+			current.prev().show();
+			$("#slideNumText").text(current.attr("photoNum")*1-1+"/"+totalImgNum);
+		}
+	}
+};
+
+//외부주소링크
+var fn_outWebAdrOffClass = function(classWebAdr) {
+	if(classWebAdr == null || classWebAdr == "") {
+		alert("외부링크 주소가 잘못되었습니다.\n관리자에게 문의하세요.");
+		return;
+	}
+	window.open(classWebAdr, "_blank");
+	return;
+};
+
 //찜하기
-var fn_selectJjimProc = function(classId) {
-		$(".btn-wish").css("background-color", "#6a2cfe");
+// var fn_selectJjimProc = function(classId) {
+// 		$(".btn-wish").css("background-color", "#6a2cfe");
 // 	var usrId = "${sessionScope.loginVO.usrId}";
 // 	if(usrId == null || usrId == "") {
 // 		alert("로그인 후 사용이 가능합니다.");
@@ -205,17 +251,7 @@ var fn_selectJjimProc = function(classId) {
 // 			}
 // 		}
 // 	}); 
-};
-
-//외부주소링크
-var fn_outWebAdrOffClass = function(classWebAdr) {
-	if(classWebAdr == null || classWebAdr == "") {
-		alert("외부링크 주소가 잘못되었습니다.\n관리자에게 문의하세요.");
-		return;
-	}
-	window.open(classWebAdr, "_blank");
-	return;
-};
+// };
 
 //공유하기
 var fn_shareOffClass = function(classId) {
@@ -225,7 +261,25 @@ var fn_shareOffClass = function(classId) {
 	alert("URL을 복사하세요.\n"+$("#shareUrlAddress").val());
 };
 
+//알람신청 팝업
+var fn_selectAlarmPop = function(classId) {
+	var usrId = "${sessionScope.loginVO.usrId}";
+	if(usrId == null || usrId == "") {
+		alert("로그인 후 사용이 가능합니다.");
+		return;
+	}
+	location.href="${basePath}/alarm/r/n/selectUserPhon.do?classId="+classId;
+};
 
+//끝판왕 클래스 신청 안녕~~
+var fn_selectOffClassApply = function(classId) {
+	var usrId = "${sessionScope.loginVO.usrId}";
+	if(usrId == null || usrId == "") {
+		alert("로그인 후 사용이 가능합니다.");
+		return;
+	}
+	location.href="${basePath}/offclass/r/t/selectOffClassApplyDetail.do?classId="+classId;
+};
 </script>
 </body>
 </html>

@@ -58,8 +58,8 @@
 				<div class="menu_list_txt">
 					<ul>
 						<li><a class="btn_arr_big" href="javascript:void(0);" onclick="javascript:fn_onlineClass();">온라인 클래스</a></li>
-						<li><a class="btn_arr_big" href="#">뷰아떼 소개</a></li>
-						<li><a class="btn_arr_big" href="#">공지사항</a></li>
+						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">뷰아떼 소개</a></li>
+						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">공지사항</a></li>
 						<li><a class="btn_arr_big" href="javascript:void(0);" onclick="fn_logout()">로그아웃</a></li>
 					</ul>
 				</div>

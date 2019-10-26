@@ -37,7 +37,7 @@ import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 public class OffClassServiceImpl implements OffClassService{
 	protected Log log = LogFactory.getLog(this.getClass());
 	
-	@Resource(name="OffClassDao")
+	@Resource(name="offClassDao")
 	private OffClassDao offClassDao;
 	
 	@Resource(name="codeDao")

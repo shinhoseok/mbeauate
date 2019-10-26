@@ -123,4 +123,29 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 쿼리명 : 사용자 상세정보
+	설명 : 사용자 상세정보
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<select id="selectUser" parameterType="userVO" resultType="userVO">
+		<![CDATA[
+		SELECT B.U_SQ usrId,
+		       B.U_PW usrPw,
+		       B.U_NM usrNm,
+		       B.PHONE_NO mblPno,
+		       B.U_EMAIL emailAddr,
+		       B.JOIN_DT joinDt,
+		       B.LOGIN_DT loginDt,
+		       (SELECT C.MCLS_NM FROM COMMON_CD_SCLS C WHERE C.LCLS_CD = 'UST' AND C.MCLS_CD = B.U_ST) as userSt,
+		       (SELECT rl_name FROM rl_mng WHERE rl_id = ( SELECT rl_id FROM rl_user_mppg WHERE u_sq = #{usrId})) as rlName,
+			   B.U_OUT_DT userOutDt
+		  FROM USERS B
+		 WHERE B.U_SQ = #{usrId}
+		 ]]>
+	</select>
 </mapper>

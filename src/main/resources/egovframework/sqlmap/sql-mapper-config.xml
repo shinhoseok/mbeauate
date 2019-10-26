@@ -33,5 +33,7 @@
 		<typeAlias alias="couponVO" type="com.beauate.m.coupon.service.CouponVO"/>
 		<!-- 쿠폰내역VO -->
 		<typeAlias alias="couponHistoryVO" type="com.beauate.m.couponhistory.service.CouponHistoryVO"/>
+		<!-- 알람VO -->
+		<typeAlias alias="alarmVO" type="com.beauate.m.alarm.service.AlarmVO"/>
 	</typeAliases>
 </configuration>
