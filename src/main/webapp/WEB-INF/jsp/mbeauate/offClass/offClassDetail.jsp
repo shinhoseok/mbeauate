@@ -144,7 +144,7 @@
 			<button type="button" class="btn_share" onclick="fn_shareOffClass('<c:out value="${rslt.resultVO.classId}"/>')">공유하기</button>
 			<c:choose>
 				<c:when test="${not empty rslt.jjimVO}">
-					<button type="button" class="btn_wish active" id="jjimBtn" onclick="javascript:fn_selectJjimProc('<c:out value="${rslt.resultVO.classId}"/>');">찜</button>
+					<button type="button" class="btn_wish_active" id="jjimBtn" onclick="javascript:fn_selectJjimProc('<c:out value="${rslt.resultVO.classId}"/>');">찜</button>
 				</c:when>
 				<c:otherwise>
 					<button type="button" class="btn_wish" id="jjimBtn" onclick="javascript:fn_selectJjimProc('<c:out value="${rslt.resultVO.classId}"/>');">찜</button>
@@ -152,7 +152,7 @@
 			</c:choose>
 		</div>
 	</section>
-<input type="hidden" id="shareUrlAddress">
+<input type="text" style="position:absolute;top:-9999em;" id="shareUrlAddress" value="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${rslt.resultVO.classId}">
 <script type="text/javascript">
 $(function() {
 	//리뷰리스트
@@ -220,45 +220,41 @@ var fn_outWebAdrOffClass = function(classWebAdr) {
 };
 
 //찜하기
-// var fn_selectJjimProc = function(classId) {
-// 		$(".btn-wish").css("background-color", "#6a2cfe");
-// 	var usrId = "${sessionScope.loginVO.usrId}";
-// 	if(usrId == null || usrId == "") {
-// 		alert("로그인 후 사용이 가능합니다.");
-// 		fn_loginPopUpLayer();
-// 		return;
-// 	}
-// 	var params = {};
-// 	params.usrId = usrId;
-// 	params.classId = classId;
+var fn_selectJjimProc = function(classId) {
+	var usrId = "${sessionScope.loginVO.usrId}";
+	if(usrId == null || usrId == "") {
+		alert("로그인 후 사용이 가능합니다.");
+		return;
+	}
+	var params = {};
+	params.usrId = usrId;
+	params.classId = classId;
 	
-// 	$.ajax({ 	
-// 		url: "${basePath}/jjim/w/n/selectJjimProc.do",
-// 		type: 'POST',
-// 		dataType : "json",
-// 		data : params,
-// 		error: function(){
-// 			 alert("현재 찜 서비스가 원할하지 않습니다.\n잠시후 다시 이용해 주십시요.");
-// 			 return;
-// 		},
-// 		success: function(r) { 
-// 			if(r.resultYn == 'Y') { //찜함
-// 				$(".btn-wish").css("background-color", "#6a2cfe");
-// 				$(".btn-wish active").css("background-color", "#6a2cfe");
-// 			} else{ //찜취소
-// 				$(".btn-wish").css("background-color", "#000");
-// 				$(".btn-wish active").css("background-color", "#000");
-// 			}
-// 		}
-// 	}); 
-// };
+	$.ajax({ 	
+		url: "${basePath}/jjim/w/n/selectJjimProc.do",
+		type: 'POST',
+		dataType : "json",
+		data : params,
+		error: function(){
+			 alert("현재 찜 서비스가 원할하지 않습니다.\n잠시후 다시 이용해 주십시요.");
+			 return;
+		},
+		success: function(r) { 
+			if(r.resultYn == 'Y') { //찜함
+				$('#jjimBtn').css('background-position', '-108px -74px');
+			} else{ //찜취소
+				$('#jjimBtn').css('background-position', '-76px -74px');
+			}
+		}
+	}); 
+};
 
 //공유하기
-var fn_shareOffClass = function(classId) {
-	var obShareUrl = document.getElementById("shareUrlAddress");
-	var f = document.getElementById("shareUrlAddress");
-	f.value = document.location.href;
-	alert("URL을 복사하세요.\n"+$("#shareUrlAddress").val());
+var fn_shareOffClass = function(classId) {	
+	$("#shareUrlAddress").val(window.document.location.href);
+	$("#shareUrlAddress").select();
+	document.execCommand("copy");
+	alert("복사되었습니다"); 
 };
 
 //알람신청 팝업

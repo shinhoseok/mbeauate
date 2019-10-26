@@ -57,7 +57,7 @@ h2 {font-size: 20px;}
 .btn_arr_big{display: block; position: relative;}
 .btn_arr_big::after{ display: inline-block; position: absolute; right: 31px; content:'';width: 16px; height: 16px; background: url('../images/temp/icon_set.svg'); background-position: -60px 0;}
 .floating_btn .btn_wish{ width: 22px;height: 22px; background: url('../images/temp/icon_set.svg') no-repeat -76px -74px; text-indent: -99999em;}
-.floating_btn .btn_wish:hover, .floating_btn .btn_wish:focus, .floating_btn .btn_wish:active {background: url('../images/temp/icon_set.svg') no-repeat -108px -74px;}
+/* .floating_btn .btn_wish:hover{background: url('../images/temp/icon_set.svg') no-repeat -108px -74px;} */
 
 /*플로팅메뉴*/
 #floating_menu{height: 50px;  position: fixed; bottom: 0; left:0; font-size: 10px; overflow: hidden; background-color: #f8f8f8; width: 100%;}
@@ -110,7 +110,7 @@ footer address p{font-family:'Roboto Mono'; margin-top: 2px;}
 /* 서브_헤더*/
 .sub_header{overflow: hidden;position: relative;}
 .sub_header h1{ text-align: center; width: 100%;}
-.sub_header a{position: absolute;text-indent: -999999em; width: 28px; height: 28px; background: url('../images/temp/icon_set.svg'); display: block;}
+.sub_header a{position: absolute;text-indent: -999999em; width: 28px; height: 28px; background: url('../images/temp/icon_set.svg'); display: block; background-position: 0 -70px;}
 .sub_header .btn_back{ background-position: 0 -70px; top:15px; left: 16px;}
 .sub_header .btn_home{ background-position: -38px -70px; top:15px; right: 16px;}
 .sub_header .btn_close_black{ background-position: 0 -30px; top:15px; right: 16px;}
@@ -268,11 +268,13 @@ text-shadow:0 2px 3px rgba(0, 0, 0, 0.26); font-size: 15px; z-index: 1;}
 .class_detail .floating_btn{ background-color: #000; position: fixed;}
 .class_detail .floating_btn .btn_txt{ width: 240px;font-size: 20px; font-weight: 300; color: #fff; 
 padding-left:24px; text-align: left; line-height: 72px;}
-.class_detail .floating_btn .btn_share, .class_detail .floating_btn .btn_wish
+.class_detail .floating_btn .btn_share, .class_detail .floating_btn .btn_wish, .class_detail .floating_btn .btn_wish_active 
 {position: absolute;}
 .class_detail .floating_btn .btn_share{ width: 22px;height: 22px; background: url('../images/temp/icon_set.svg') no-repeat -140px -74px; text-indent: -99999em; margin: 25px 10px; right: 60px;}
 .class_detail .floating_btn .btn_wish{ margin: 25px 20px; right: 0;}
 .class_detail .floating_btn .icon_arr_more::after{margin-left: 2px}
+.class_detail .floating_btn .btn_wish_active{ margin: 25px 20px; right: 0;}
+.btn_wish_active { width: 22px;height: 22px; background: url('../images/temp/icon_set.svg') no-repeat -108px -74px; text-indent: -99999em;}
 
 /*알람신청*/
 .popup_alarm{background-color: #000000; opacity: 0.85; height: 100vh; color: #ffffff; }

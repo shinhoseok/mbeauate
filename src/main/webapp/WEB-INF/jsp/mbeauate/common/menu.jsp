@@ -9,7 +9,7 @@
 			<li tabId="4"><a href="javascript:void(0);">로그인</a></li>
 		</c:when>
 		<c:otherwise>
-			<li><a href="#">마이</a></li>
+			<li><a href="${basePath}/mypage/r/t/selectMyPageList.do">마이</a></li>
 		</c:otherwise>
 	</c:choose>
 </ul>

@@ -4,7 +4,6 @@
 	<li>상품금액</li>
 	<li>쿠폰사용</li>
 </ul>
-<c:set var="totalMoney" value="${classCost - couponMoney}"/>
 <c:choose>
 	<c:when test="${not empty couponVO.couponId }">
 		<ul class="right">
@@ -17,6 +16,7 @@
 				<li>총 결제금액</li>
 			</ul>
 			<ul class="right">
+				<c:set var="totalMoney" value="${classCost - couponMoney}"/>
 				<li class="num"><span><fmt:formatNumber value="${totalMoney}" pattern="#,###" /></span>원</li>
 			</ul>
 		</div>

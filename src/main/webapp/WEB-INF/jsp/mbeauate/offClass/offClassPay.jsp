@@ -106,11 +106,11 @@
 					<div id="pay-priceinfo">
 						<ul class="left">
 							<li>상품금액</li>
-							<li>쿠폰사용</li>
+							<li>쿠폰사용${couponMoney }</li>
 						</ul>
-						<c:set var="totalMoney" value="${rslt.resultVO.classCost - couponMoney}"/>
 						<c:choose>
 							<c:when test="${not empty rslt.couponList[0].couponId }">
+								
 								<ul class="right">
 									<c:set var="couponMoney" value="${rslt.resultVO.classCost * rslt.couponList[0].couponRate / 100}"/>
 									<li class="num font_60"><fmt:formatNumber value="${rslt.resultVO.classCost }" pattern="#,###" />원</li>
@@ -121,6 +121,7 @@
 										<li>총 결제금액</li>
 									</ul>
 									<ul class="right">
+										<c:set var="totalMoney" value="${rslt.resultVO.classCost - couponMoney}"/>
 										<li class="num"><span><fmt:formatNumber value="${totalMoney}" pattern="#,###" /></span>원</li>
 									</ul>
 								</div>
