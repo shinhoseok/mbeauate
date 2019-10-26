@@ -148,4 +148,57 @@
 		 WHERE B.U_SQ = #{usrId}
 		 ]]>
 	</select>
+	
+	<!-- 쿼리명 : 사용자 수정
+	설명 : 사용자 수정
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<update id="updateUser" parameterType="userVO">
+		<![CDATA[
+		UPDATE USERS
+		]]>  
+		<trim prefix="SET" suffixOverrides=",">
+		    <if test='pwChangeGubun == "Y"'>
+				U_PW      = #{usrPw},
+		    </if>
+		    <if test="usrNm != null and  usrNm != ''">
+				U_NM      = #{usrNm},
+		    </if>
+		    <if test="mblPno != null and  mblPno != ''">
+				PHONE_NO     = #{mblPno},
+		    </if>
+	    </trim>
+		<![CDATA[    
+		WHERE  U_SQ   = #{usrId}
+		]]>
+    </update>
+    
+    <!-- 쿼리명 : 사용자 삭제
+	설명 : 사용자 삭제
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+    <delete id="updateUserProc" parameterType="userVO">
+		<![CDATA[
+		UPDATE USERS 
+		SET 
+			u_email = '',
+			join_dt = NULL,
+			u_nm = NULL,
+			u_pw = NULL,
+			phone_no = NULL,
+			login_dt = NULL,
+			u_st = NULL,
+			u_out_dt = SYSDATE
+		WHERE 
+			u_sq = #{usrId}
+		]]>		
+    </delete>
 </mapper>

@@ -127,4 +127,46 @@ public interface UserDao {
 	 * @throws Exception
 	 */ 
 	UserVO selectUser(UserVO userVO) throws Exception;
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 수정 
+	 * 2. 처리내용 :  사용자 수정 
+	 * </pre>
+	 * @Method Name : updateUser
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일			작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17  신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userVO
+	 * @return
+	 * @throws Exception
+	 */ 
+	void updateUser(UserVO userVO) throws Exception;
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 삭제
+	 * 2. 처리내용 :  사용자 삭제
+	 * </pre>
+	 * @Method Name : userDeleteProc
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일			작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17  신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userVO
+	 * @return
+	 * @throws Exception
+	 */ 
+	void updateUserProc(UserVO userVO) throws Exception;
 }
