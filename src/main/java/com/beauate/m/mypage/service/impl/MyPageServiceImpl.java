@@ -17,6 +17,8 @@ import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.StringUtil;
 import com.beauate.m.coupon.service.CouponDao;
 import com.beauate.m.coupon.service.CouponVO;
+import com.beauate.m.couponhistory.service.CouponHistoryDao;
+import com.beauate.m.couponhistory.service.CouponHistoryVO;
 import com.beauate.m.jjim.service.JjimDao;
 import com.beauate.m.jjim.service.JjimVO;
 import com.beauate.m.mypage.service.MyPageService;
@@ -71,6 +73,40 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	
 	@Resource(name="commonUtils")
 	private CommonUtils commonUtils;
+	
+	@Resource(name="couponHistoryDao")
+	private CouponHistoryDao couponHistoryDao;
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 메뉴리스트(신청한클래스,사용가능한 쿠폰 갯수)
+	 * 2. 처리내용 : 마이페이지 메뉴리스트(신청한클래스,사용가능한 쿠폰 갯수)
+	 * </pre>
+	 * @Method Name : selectMyPageList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> selectMyPageList(PayVO payVO) throws Exception {
+		Map<String, Object> rsltMap = new HashMap<String, Object>();
+		int myPayCnt = payDao.selectMyPayCnt(payVO);
+		CouponHistoryVO couponHistoryVO = new CouponHistoryVO();
+		couponHistoryVO.setUsrId(payVO.getUsrId());
+		int myCouponCnt = couponHistoryDao.selectMyCouponCnt(couponHistoryVO);
+		
+		rsltMap.put("myPayCnt", myPayCnt);
+		rsltMap.put("myCouponCnt", myCouponCnt);
+		return rsltMap;
+	}
 	
 	/**
 	 * <pre>

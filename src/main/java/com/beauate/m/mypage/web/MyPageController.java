@@ -1,13 +1,29 @@
 package com.beauate.m.mypage.web;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.beauate.m.login.service.LoginVO;
+import com.beauate.m.mypage.service.MyPageService;
+import com.beauate.m.pay.service.PayVO;
+import com.beauate.m.review.service.ReviewService;
 
 @Controller
 public class MyPageController {
 	protected Log log = LogFactory.getLog(this.getClass());
+	
+	@Resource(name = "myPageService")
+	private MyPageService myPageService;
+	
+	@Resource(name = "reviewService")
+	private ReviewService reviewService;
 	
 	/**
 	 * <pre>
@@ -23,14 +39,18 @@ public class MyPageController {
 	 *	----------- ------------------- ---------------------------------------
 	 *	2019. 5. 17.		신호석				최초 작성 
 	 *	-----------------------------------------------------------------------
-	 * 
 	 * @param payVO
 	 * @param model
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/mypage/r/t/selectMyPageList.do")
-	public String selectMyPageList() throws Exception {
+	public String selectMyPageList(PayVO payVO ,ModelMap model, LoginVO sessionVO) throws Exception {
+		
+		payVO.setUsrId(sessionVO.getUsrId());
+		Map<String, Object> rsltMap = myPageService.selectMyPageList(payVO);
+		model.addAttribute("rslt", rsltMap);
+		
 		return "/mypage/myPageList";
 	}
 }

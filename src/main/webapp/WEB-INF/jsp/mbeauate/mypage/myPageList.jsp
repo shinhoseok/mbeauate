@@ -35,13 +35,13 @@
 					<li><a href="">
 							<ul>
 								<li class="btn_arr">신청한 클래스</li>
-								<li class="num">2</li>
+								<li class="num"><c:out value="${rslt.myPayCnt }"/></li>
 							</ul>
 					</a></li>
 					<li><a href="">
 							<ul>
 								<li class="btn_arr">사용가능한 쿠폰</li>
-								<li class="num">6</li>
+								<li class="num"><c:out value="${rslt.myCouponCnt }"/></li>
 							</ul>
 					</a></li>
 				</ul>

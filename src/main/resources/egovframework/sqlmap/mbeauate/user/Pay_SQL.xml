@@ -297,5 +297,22 @@
 		WHERE
 			e.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
 	</select>
+	
+	<!-- 쿼리명 : 마이페이지 신청한 클래스 갯수
+	설명 : 마이페이지 신청한 클래스 갯수
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 5.17     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.17
+	-->
+	<select id="selectMyPayCnt" parameterType="payVO" resultType="java.lang.Integer">
+		SELECT 
+			COUNT(*) cnt
+		FROM 
+			pay
+		WHERE 
+			u_sq = #{usrId}
+	</select>
 </mapper>
 

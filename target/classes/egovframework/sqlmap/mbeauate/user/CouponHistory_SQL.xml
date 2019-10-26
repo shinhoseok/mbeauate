@@ -76,5 +76,25 @@
 			UPDATE U_CPN SET u_cpn_fl = #{cpnFl} WHERE u_sq = #{usrId} and cpn_sq = #{couponId}
 		]]>
 	</update>
+	
+	<!-- 쿼리명 : 마이페이지 사용가능한 쿠폰 갯수
+	설명 : 마이페이지 사용가능한 쿠폰 갯수
+	수정일                     수정자           수정내용
+	==========  ======  ===================
+	2019. 10.16     신호석           최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 10.16
+	-->	
+	<select id="selectMyCouponCnt" parameterType="couponHistoryVO" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(*) cnt
+		FROM 
+			u_cpn
+		WHERE 
+			u_sq = #{usrId}
+			AND u_cpn_fl = 'Y'
+		]]>
+	</select>
 </mapper>
 
