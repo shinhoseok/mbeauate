@@ -128,7 +128,7 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 */ 
 	public Map<String, Object> selectApplyClassList(PayVO payVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
-		int pageUnit = 2; //16개씩 페이징
+		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = payVO.getPageIndex();
 		payVO.setFirstIndex(1);
 		if(pageIndex == 1) {
@@ -219,19 +219,19 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 */ 
 	public Map<String, Object> selectJjimList(JjimVO jjimVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(jjimVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(jjimVO.getPageUnit());
-		paginationInfo.setPageSize(jjimVO.getPageSize());
-		
-		jjimVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		jjimVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		jjimVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 16; //16개씩 페이징
+		int pageIndex = jjimVO.getPageIndex();
+		jjimVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			jjimVO.setLastIndex(pageUnit);
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			jjimVO.setLastIndex(lastIndex);
+		}
 		
 		List<JjimVO> selectList = null;
 		
 		int cnt = jjimDao.selectJjimListCnt(jjimVO);
-		paginationInfo.setTotalRecordCount(cnt);
 		if(cnt > 0){
 			//리스트
 			selectList = jjimDao.selectJjimList(jjimVO);
@@ -241,7 +241,6 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		//오늘날짜
 		String today = DateUtil.getCurrentYearMonthDay();
 		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		rsltMap.put("today", today);

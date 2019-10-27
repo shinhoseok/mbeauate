@@ -57,10 +57,10 @@
 				<!--나머지 메뉴들-->
 				<div class="menu_list_txt">
 					<ul>
-						<li><a class="btn_arr_big" href="javascript:void(0);" onclick="javascript:fn_onlineClass();">온라인 클래스</a></li>
+						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">온라인 클래스</a></li>
 						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">뷰아떼 소개</a></li>
 						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">공지사항</a></li>
-						<li><a class="btn_arr_big" href="javascript:void(0);" onclick="fn_logout()">로그아웃</a></li>
+						<li><a class="btn_arr_big" href="${basePath}/login/a/n/logOut.do">로그아웃</a></li>
 					</ul>
 				</div>
 			</div>
@@ -72,16 +72,7 @@
 		</section>
 	</div>
 <script type="text/javascript">
-var fn_logout = function() {
-	if(confirm("로그아웃 하시겠습니까?")){
-		document.location.href="${basePath}/login/a/n/logOut.do";
-	}
-};
 
-//온라인클래스 준비중
-var fn_onlineClass = function() {
-	alert("준비 중 입니다.");
-};
 </script>
 </body>
 </htm>

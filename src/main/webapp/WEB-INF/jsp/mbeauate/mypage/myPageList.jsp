@@ -28,7 +28,7 @@
 				<h2>
 					${sessionScope.loginVO.usrNm}님<br> 반갑습니다
 				</h2>
-				<a class="btn_r2" href="#">My정보</a>
+				<a class="btn_r2" href="${basePath}/mypage/r/n/updateMyInfo.do">My정보</a>
 			</div>
 			<div>
 				<ul>
@@ -53,7 +53,7 @@
 			<ul>
 				<h6>class</h6>
 				<li><a class="btn_arr_big" href="${basePath}/mypage/r/t/selectMyClassList.do">신청한 클래스</a></li>
-				<li><a class="btn_arr_big" href="#">찜한 클래스</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectMyJjimClassList.do">찜한 클래스</a></li>
 			</ul>
 			<ul>
 				<h6>Review</h6>
