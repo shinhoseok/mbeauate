@@ -128,19 +128,18 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 */ 
 	public Map<String, Object> selectApplyClassList(PayVO payVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(payVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(payVO.getPageUnit());
-		paginationInfo.setPageSize(payVO.getPageSize());
-		
-		payVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		payVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		payVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 2; //16개씩 페이징
+		int pageIndex = payVO.getPageIndex();
+		payVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			payVO.setLastIndex(pageUnit);
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			payVO.setLastIndex(lastIndex);
+		}
 		
 		List<PayVO> selectList = null;
-		
 		int cnt = payDao.selectPayListCnt(payVO);
-		paginationInfo.setTotalRecordCount(cnt);
 		if(cnt > 0){
 			//리스트
 			selectList = payDao.selectPayList(payVO);
@@ -153,7 +152,6 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		//오늘날짜
 		String today = DateUtil.getCurrentYearMonthDay();
 		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		rsltMap.put("today", today);

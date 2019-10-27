@@ -52,7 +52,7 @@
 		<div class="my_menu_list">
 			<ul>
 				<h6>class</h6>
-				<li><a class="btn_arr_big" href="#">신청한 클래스</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/t/selectMyClassList.do">신청한 클래스</a></li>
 				<li><a class="btn_arr_big" href="#">찜한 클래스</a></li>
 			</ul>
 			<ul>

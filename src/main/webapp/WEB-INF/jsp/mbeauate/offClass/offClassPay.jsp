@@ -106,11 +106,10 @@
 					<div id="pay-priceinfo">
 						<ul class="left">
 							<li>상품금액</li>
-							<li>쿠폰사용${couponMoney }</li>
+							<li>쿠폰사용</li>
 						</ul>
 						<c:choose>
 							<c:when test="${not empty rslt.couponList[0].couponId }">
-								
 								<ul class="right">
 									<c:set var="couponMoney" value="${rslt.resultVO.classCost * rslt.couponList[0].couponRate / 100}"/>
 									<li class="num font_60"><fmt:formatNumber value="${rslt.resultVO.classCost }" pattern="#,###" />원</li>
@@ -153,10 +152,12 @@
 			<div style="cursor: pointer;" onclick="javascript:fn_payment()">
 				<c:choose>
 					<c:when test="${not empty rslt.couponList[0].couponId }">
+						<c:set var="couponMoney" value="${rslt.resultVO.classCost * rslt.couponList[0].couponRate / 100}"/>
+						<c:set var="totalMoney" value="${rslt.resultVO.classCost - couponMoney}"/>
 						<span class="num"><fmt:formatNumber value="${totalMoney}" pattern="#,###" /></span>원 결제하기
 					</c:when>
 					<c:otherwise>
-						<span class="num"><fmt:formatNumber value="${totalMoney}" pattern="#,###" /></span>원 결제하기
+						<span class="num"><fmt:formatNumber value="${rslt.resultVO.classCost}" pattern="#,###" /></span>원 결제하기
 					</c:otherwise>
 				</c:choose>
 			</div>
