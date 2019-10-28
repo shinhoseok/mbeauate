@@ -27,7 +27,9 @@ var fn_menuCommon = function(tabId) {
 	} else if(tabId == '2') {
 		url = "${basePath}/home/a/n/main.do";
 	} else if(tabId == '3') {
-		url = "${basePath}/mypage/r/n/selectUsePossibleCpnList.do";
+		alert("준비중 입니다.");
+		return;
+// 		url = "${basePath}/mypage/r/n/selectUsePossibleCpnList.do";
 	} else if(tabId == '4') {
 		url = "${basePath}/login/a/n/login.do";
 	} else {

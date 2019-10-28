@@ -17,7 +17,7 @@
 <body>
 	<header>
 		<div class="sub_header">
-			<a class="btn_back" href="javascript:window.history.back();">뒤로</a>
+			<a class="btn_back" href="#" onclick="window.history.back();return false;"></a>
 			<h1>찜한 클래스</h1>
 		</div>
 	</header>
