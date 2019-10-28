@@ -37,7 +37,7 @@
 			<ul>
 				<li>휴대폰</li>
 				<li class="num"><c:out value="${rslt.userVO.mblPno }"/></li>
-				<li><a href="javascript:alert('준비중 입니다.');">번호변경</a></li>
+				<li><a href="${basePath}/mypage/r/n/updateMyInfo.do">번호변경</a></li>
 			</ul>
 		</div>
 		<div class="btn_more">
@@ -53,7 +53,7 @@ var fn_selectAlarmProc = function(classId) {
 	params.classId = classId;
 	
 	$.ajax({ 	
-		url: "${basePath}/alarm/w/n/selectAlarmProc.do",
+		url: "${basePath}/offclass/w/n/selectAlarmProc.do",
 		type: 'POST',
 		dataType : "json",
 		data : params,

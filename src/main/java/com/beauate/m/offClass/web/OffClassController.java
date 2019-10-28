@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.beauate.m.alarm.service.AlarmService;
+import com.beauate.m.alarm.service.AlarmVO;
 import com.beauate.m.common.service.StringUtil;
 import com.beauate.m.coupon.service.CouponService;
 import com.beauate.m.coupon.service.CouponVO;
@@ -30,6 +32,9 @@ public class OffClassController {
 	
 	@Resource(name = "couponService")
 	private CouponService couponService;
+	
+	@Resource(name = "alarmService")
+	private AlarmService alarmService;
 	
 	/**
 	 * <pre>
@@ -272,5 +277,64 @@ public class OffClassController {
 		
 		
 		return "/offClass/offClassPayComplete";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 알람이 신청시 사용자 핸드폰 조회
+	 * 2. 처리내용 : 알람이 신청시 사용자 핸드폰 조회
+	 * </pre>
+	 * @Method Name : selectUserPhon
+	 * @date : 2019. 10. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param jjimVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/offclass/r/n/selectUserPhon.do")
+	public String selectUserPhon(ClassVO classVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		
+		classVO.setUsrId(sessionVO.getUsrId());
+		Map<String, Object> rsltMap = alarmService.selectUserPhon(classVO);
+		model.addAttribute("rslt", rsltMap);
+		
+		return "/offClass/offClassAlarm";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 알람이 있는지 확인 후 등록
+	 * 2. 처리내용 : 알람이 있는지 확인 후 등록
+	 * </pre>
+	 * @Method Name : selectAlarmProc
+	 * @date : 2019. 10. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param jjimVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/offclass/w/n/selectAlarmProc.do")
+	public String selectAlarmProc(AlarmVO alarmVO, SessionStatus status, ModelMap model) throws Exception {
+		
+		String resultYn = alarmService.selectAlarmDetail(alarmVO);
+		status.setComplete();	//중복 submit 방지
+		model.addAttribute("resultYn", resultYn);
+		
+		return "jsonView";
 	}
 }

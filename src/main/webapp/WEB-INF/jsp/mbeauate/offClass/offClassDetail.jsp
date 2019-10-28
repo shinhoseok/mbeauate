@@ -272,7 +272,7 @@ var fn_selectAlarmPop = function(classId) {
 		alert("로그인 후 사용이 가능합니다.");
 		return;
 	}
-	location.href="${basePath}/alarm/r/n/selectUserPhon.do?classId="+classId;
+	location.href="${basePath}/offclass/r/n/selectUserPhon.do?classId="+classId;
 };
 
 //끝판왕 클래스 신청 안녕~~
