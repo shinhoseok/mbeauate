@@ -32,7 +32,7 @@
 			</div>
 			<div>
 				<ul>
-					<li><a href="">
+					<li><a href="${basePath}/mypage/r/t/selectMyClassList.do">
 							<ul>
 								<li class="btn_arr">신청한 클래스</li>
 								<li class="num"><c:out value="${rslt.myPayCnt }"/></li>

@@ -31,7 +31,7 @@
 							</div>
 						</div>
 						<div class="text_wrap">
-							<a href="#">
+							<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId}">
 								<div class="etc_info">
 									<span><c:out value="${list.classCt }"/></span>
 									<span class="day_open">
