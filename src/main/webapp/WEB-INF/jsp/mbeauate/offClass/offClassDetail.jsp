@@ -17,9 +17,9 @@
 <body>
 	<header>
 		<div class="sub_header">
-			<a class="icon_back" href="javascript:window.history.back();">뒤로</a>
+			<a class="icon_back" href="#" onclick="window.history.back();return false;"></a>
 			<h1>상세정보</h1>
-			<a class="btn_home" href="${basePath}/home/a/n/main.do">홈</a>
+			<a class="btn_home" href="${basePath}/home/a/n/main.do"></a>
 		</div>
 	</header>
 	<section class="class_detail">
