@@ -71,7 +71,14 @@
 				<h3><c:out value="${rslt.resultVO.classTitle }"/></h3>
 			</div>
 			<div class="class_price">
-				<span class=""><fmt:formatNumber value="${rslt.resultVO.classCost }" pattern="#,###" />원</span>
+				<c:choose>
+					<c:when test="${rslt.resultVO.classCost == -1}">
+						<span class="">-</span>
+					</c:when>
+					<c:otherwise>
+						<span class=""><fmt:formatNumber value="${rslt.resultVO.classCost }" pattern="#,###" />원</span>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="class_info line_t10g">
 				<div class="inner">
@@ -93,7 +100,8 @@
 				</div>
 			</div>
 			<div class="class_detail_img line_t10g">
-				<img src="${imagePath}/sub/class_detail_mo.jpg" />
+<%-- 				<img src="${imagePath}/sub/class_detail_mo.jpg" /> --%>
+				<img src="${uploadPath}/<c:out value="${rslt.resultVO.imgSrc2 }"/>" />
 			</div>
 			<div class="class_location" id="location">
 				<div class="inner">
