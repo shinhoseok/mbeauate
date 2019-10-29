@@ -29,11 +29,11 @@
 			<div class="about_class">
 				<h2>전문가 교육소식</h2>
 				<ul>
-					<li><a href="#"> <img src="${imagePath}/temp/list_02.jpg" />
+					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
 					</a></li>
-					<li><a href="#"> <img src="${imagePath}/temp/list_02.jpg" />
+					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
 					</a></li>
-					<li><a href="#"> <img src="${imagePath}/temp/list_02.jpg" />
+					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
 					</a></li>
 				</ul>
 				<div class="btn_more">
@@ -85,11 +85,18 @@
 			<!--슬라이드-->
 			<div class="list_slide">
 				<div class="list_slide_item">
-					<a href="#"> <img src="${imagePath}/temp/bn_special.jpg" />
+					<a href="javascript:void(0);">
+						<img photoNum="1" id="photo_0" src="${imagePath}/temp/bn_special.jpg" />
+						<img photoNum="2" id="photo_1" style="display: none;" src="${imagePath}/temp/bn_special.jpg" />
+						<img photoNum="3" id="photo_2" style="display: none;" src="${imagePath}/temp/bn_special.jpg" />
+						<img photoNum="4" id="photo_3" style="display: none;" src="${imagePath}/temp/bn_special.jpg" />
+						<img photoNum="5" id="photo_4" style="display: none;" src="${imagePath}/temp/bn_special.jpg" />
 					</a>
 				</div>
 				<div class="slide_num_wrap">
-					<a class="icon_arr_prev" href="#"></a> <span class="num"><strong class="num">1</strong>/5</span> <a class="icon_arr_next" href="#"></a>
+					<a class="icon_arr_prev" href="javascript:void(0);" onclick="fn_imgMove('L');"></a>
+					<span class="num"><strong class="num" id="slideNumText">1</strong>/5</span>
+					<a class="icon_arr_next" href="javascript:void(0);" onclick="fn_imgMove('R');"></a>
 				</div>
 			</div>
 			<!--//슬라이드-->
@@ -247,5 +254,30 @@
 			<!--// 메뉴-->
 		</section>
 	</div>
+	
+<script type="text/javascript">
+//슬라이드 이미지  중간
+var fn_imgMove = function(gubun) {
+	var current = $("img[id^='photo_']:visible");
+	var currentImgNum = current.attr("photoNum")*1+1;
+	if(gubun == 'R') {
+		if(current.is("img[id^='photo_']:last")) {
+			alert("마지막 사진입니다.");
+		} else {
+			current.hide();
+			current.next().show();
+			$("#slideNumText").text(current.attr("photoNum")*1+1);
+		}
+	} else {
+		if(current.is("img[id^='photo_']:first")) {
+			alert("첫 사진입니다.");
+		} else {
+			current.hide();
+			current.prev().show();
+			$("#slideNumText").text(current.attr("photoNum")*1-1);
+		}
+	}
+};
+</script>
 </body>
 </htm>
