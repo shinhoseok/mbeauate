@@ -59,6 +59,11 @@ h2 {font-size: 20px;}
 .floating_btn .btn_wish{ width: 22px;height: 22px; background: url('../images/temp/icon_set.svg') no-repeat -76px -74px; text-indent: -99999em;}
 /* .floating_btn .btn_wish:hover{background: url('../images/temp/icon_set.svg') no-repeat -108px -74px;} */
 
+/*모바일 클래스 더보기*/
+.btn_class_more li{ width: 96%; background-color: #000000; color: #ffffff; height: 61px; text-align: center; margin: 60px auto;}
+.btn_class_more .btn_arr_big{display: block;color: #ffffff; font-size: 20px; vertical-align: middle; line-height: 61px;}
+.menu_list_txt .btn_class_more .btn_arr_big {padding: 0px;}
+
 /*플로팅메뉴*/
 #floating_menu{height: 50px;  position: fixed; bottom: 0; left:0; font-size: 10px; overflow: hidden; background-color: #f8f8f8; width: 100%;}
 #floating_menu .inner{padding-top:10px;}
@@ -177,7 +182,7 @@ footer address p{font-family:'Roboto Mono'; margin-top: 2px;}
 .offclass_list_wrap .img_class{margin-bottom: 30px;}
 
 /*리스트_타이틀*/
-.offclass_list_wrap .list2_wrap h2{ width: 146px; height: 27px; background: url('../images/temp/icon_set.svg'); background-position: -556px -21px; text-indent: -999999em; margin-bottom: -10px;}
+.offclass_list_wrap .list2_wrap h2{ width: 146px; height: 36px; background: url('../images/temp/icon_set.svg'); background-position: -556px -21px; text-indent: -999999em; margin-bottom: -10px;}
 
 
 /*클래스_상세*/
@@ -348,7 +353,7 @@ padding-left:24px; text-align: left; line-height: 72px;}
 .main_bn .swiper-scrollbar{width: 90%; height: 1px; background-color: #ffffff; opacity: 0.3; position: absolute; left: 5%; bottom: 40px;}
 .main_bn .swiper-num{position: absolute; bottom: 18px; right: 5%; font-size: 12px; color: #ffffff;}
 /*어바웃 클래스*/
-.about_class h2 { background: url('../images/temp/icon_set.svg') -216px 0; text-indent: -999999em; margin-left: 8%; width: 121px; height: 109px; margin-bottom: 33px;}
+.about_class h2 { background: url('../images/temp/icon_set.jpg') -216px 0; text-indent: -999999em; margin-left: 7%; width: 136px; height: 110px; margin-bottom: 33px; background-size: 522%;}
 .about_class ul {padding-left: 7%;}
 .about_class ul li {margin-bottom: 50px;}
 .about_class .btn_more{ width: 90%;}
