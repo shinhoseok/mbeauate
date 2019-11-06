@@ -130,16 +130,26 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = payVO.getPageIndex();
+		//총카운트
+		int cnt = payDao.selectPayListCnt(payVO);
 		payVO.setFirstIndex(1);
 		if(pageIndex == 1) {
-			payVO.setLastIndex(pageUnit);
+			if(cnt > pageUnit) {
+				payVO.setLastIndex(pageUnit);
+			} else {
+				payVO.setLastIndex(cnt);
+			}
 		} else {
 			int lastIndex = pageUnit*pageIndex;
-			payVO.setLastIndex(lastIndex);
+			if(cnt > lastIndex) {
+				payVO.setLastIndex(lastIndex);
+			} else {
+				payVO.setLastIndex(cnt);
+			}
 		}
 		
 		List<PayVO> selectList = null;
-		int cnt = payDao.selectPayListCnt(payVO);
+		
 		if(cnt > 0){
 			//리스트
 			selectList = payDao.selectPayList(payVO);
@@ -221,17 +231,25 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = jjimVO.getPageIndex();
+		int cnt = jjimDao.selectJjimListCnt(jjimVO); //총카운트
 		jjimVO.setFirstIndex(1);
 		if(pageIndex == 1) {
-			jjimVO.setLastIndex(pageUnit);
+			if(cnt > pageUnit) {
+				jjimVO.setLastIndex(pageUnit);
+			} else {
+				jjimVO.setLastIndex(cnt);
+			}
 		} else {
 			int lastIndex = pageUnit*pageIndex;
-			jjimVO.setLastIndex(lastIndex);
+			if(cnt > lastIndex) {
+				jjimVO.setLastIndex(lastIndex);
+			} else {
+				jjimVO.setLastIndex(cnt);
+			}
 		}
 		
 		List<JjimVO> selectList = null;
 		
-		int cnt = jjimDao.selectJjimListCnt(jjimVO);
 		if(cnt > 0){
 			//리스트
 			selectList = jjimDao.selectJjimList(jjimVO);

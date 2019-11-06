@@ -56,17 +56,19 @@
 		</c:otherwise>
 	</c:choose>
 </ul>
-<div class="btn_more">
+<div class="menu_list_txt">
 	<c:set var="lastIndex" value="${jjimVO.lastIndex}"/>
 	<c:set var="totalCnt" value="${rslt.selectListCnt}"/>
-	<c:choose>
-		<c:when test="${lastIndex >= totalCnt}">
-			<a id="btn_more" href="javascript:alert('마지막 페이지입니다.');">찜한 클래스 더보기<sapn class="num">(${totalCnt }/${totalCnt})</sapn></a>
-		</c:when>
-		<c:otherwise>
-			<a id="btn_more" href="javascript:void(0);" onclick="fn_searchList();">찜한 클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a>
-		</c:otherwise>
-	</c:choose>
+	<ul class="btn_class_more">
+		<c:choose>
+			<c:when test="${lastIndex >= totalCnt}">
+				<li><a class="btn_arr_big" href="javascript:alert('마지막 페이지입니다.');">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a class="btn_arr_big" href="javascript:void(0);" onclick="fn_searchList();">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
 </div>
 <form name="myJjimClassDelForm" id="myJjimClassDelForm" method="post" action="${basePath}/mypage/w/n/deleteJjimProc.do" >
 	<input type="hidden" id="jjimId" name="jjimId">

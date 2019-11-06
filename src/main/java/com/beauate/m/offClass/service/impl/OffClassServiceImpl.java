@@ -180,17 +180,26 @@ public class OffClassServiceImpl implements OffClassService{
 		
 		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = classVO.getPageIndex();
+		//총 카운트 
+		int cnt = offClassDao.selectClassMngListCnt(classVO);
 		classVO.setFirstIndex(1);
 		if(pageIndex == 1) {
-			classVO.setLastIndex(pageUnit);
+			if(cnt > pageUnit) {
+				classVO.setLastIndex(pageUnit);
+			} else {
+				classVO.setLastIndex(cnt);
+			}
 		} else {
 			int lastIndex = pageUnit*pageIndex;
-			classVO.setLastIndex(lastIndex);
+			if(cnt > lastIndex) {
+				classVO.setLastIndex(lastIndex);
+			} else {
+				classVO.setLastIndex(cnt);
+			}
 		}
 		
 		List<ClassVO> selectList = null;
-		//총 카운트 
-		int cnt = offClassDao.selectClassMngListCnt(classVO);
+		
 		if(cnt > 0){
 			//리스트
 			selectList = offClassDao.selectClassMngList(classVO);
@@ -354,18 +363,27 @@ public class OffClassServiceImpl implements OffClassService{
 		
 		int pageUnit = 16; //16개씩 페이징
 		int pageIndex = reviewVO.getPageIndex();
+		//총 카운트 
+		int cnt = reviewDao.selectReviewListCnt(reviewVO);
 		reviewVO.setFirstIndex(1);
 		if(pageIndex == 1) {
-			reviewVO.setLastIndex(pageUnit);
+			if(cnt > pageUnit) {
+				reviewVO.setLastIndex(pageUnit);
+			} else {
+				reviewVO.setLastIndex(cnt);
+			}
 		} else {
 			int lastIndex = pageUnit*pageIndex;
-			reviewVO.setLastIndex(lastIndex);
+			if(cnt > lastIndex) {
+				reviewVO.setLastIndex(lastIndex);
+			} else {
+				reviewVO.setLastIndex(cnt);
+			}
 		}
 		
 		List<ReviewVO> selectList = null;
 		
-		//총 카운트 
-		int cnt = reviewDao.selectReviewListCnt(reviewVO);
+		
 		
 		if(cnt > 0){
 			//합계
