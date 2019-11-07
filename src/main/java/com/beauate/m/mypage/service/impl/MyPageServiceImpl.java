@@ -457,19 +457,27 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 */ 
 	public Map<String, Object> selectMyReviewList(ReviewVO reviewVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<>();
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(reviewVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(reviewVO.getPageUnit());
-		paginationInfo.setPageSize(reviewVO.getPageSize());
-		
-		reviewVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		reviewVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		reviewVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 16; //16개씩 페이징
+		int pageIndex = reviewVO.getPageIndex();
+		int cnt = reviewDao.selectMyReviewListCnt(reviewVO); //총카운트
+		reviewVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			if(cnt > pageUnit) {
+				reviewVO.setLastIndex(pageUnit);
+			} else {
+				reviewVO.setLastIndex(cnt);
+			}
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			if(cnt > lastIndex) {
+				reviewVO.setLastIndex(lastIndex);
+			} else {
+				reviewVO.setLastIndex(cnt);
+			}
+		}
 		
 		List<ReviewVO> selectList = null;
 		
-		int cnt = reviewDao.selectMyReviewListCnt(reviewVO);
-		paginationInfo.setTotalRecordCount(cnt);
 		if(cnt > 0){
 			//리스트
 			selectList = reviewDao.selectMyReviewList(reviewVO);
@@ -477,9 +485,6 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 			selectList = fullImgPathChang3(selectList);
 		}
 		
-		//후기리스트
-		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		
@@ -756,5 +761,34 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 */
 	public void deleteMemberProc(UserVO userVO) throws Exception {
 		userDao.updateUserProc(userVO);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 리뷰작성
+	 * 2. 처리내용 : 마이페이지 리뷰작성
+	 * </pre>
+	 * @Method Name : insertUserReview
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param classVO
+	 * @return String
+	 * @throws Exception
+	 */
+	public ClassVO insertUserReview(ClassVO classVO) throws Exception {
+		classVO.setAdminYn("N");
+		ClassVO resultVO = offClassDao.selectClassMngDetail(classVO);
+		String tempSrc3 = resultVO.getImgSrc3();
+		if(!StringUtil.isEmpty(tempSrc3)) {
+			String resultSrc3 = StringUtil.getWasfilePath(tempSrc3);
+			resultVO.setImgSrc3(resultSrc3);
+		}
+		return resultVO;
 	}
 }

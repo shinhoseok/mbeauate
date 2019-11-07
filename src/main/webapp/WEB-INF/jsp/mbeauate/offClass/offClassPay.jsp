@@ -19,7 +19,7 @@
 		<div class="sub_header">
 			<a class="btn_back" href="#" onclick="window.history.back();return false;"></a>
 			<h1>클래스 결제</h1>
-			<a class="btn_home" href="${basePath}/home/a/n/main.do">홈</a>
+			<a class="btn_home" href="${basePath}/home/a/n/main.do"></a>
 		</div>
 	</header>
 	<section class="class_pay">

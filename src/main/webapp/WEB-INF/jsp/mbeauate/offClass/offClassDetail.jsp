@@ -165,6 +165,11 @@
 $(function() {
 	//리뷰리스트
 	fn_searchReviewList();
+	//마이페이지 후기등록 후 이동될 탭
+	var detailGoTab = '<c:out value="${classVO.detailGoTab }"/>';
+	if(detailGoTab != null || detailGoTab != "" || detailGoTab != "undefined") {
+		fn_move(detailGoTab);
+	}
 });
 
 //리뷰 현재페이지 전역변수
@@ -283,6 +288,12 @@ var fn_selectOffClassApply = function(classId) {
 		return;
 	}
 	location.href="${basePath}/offclass/r/t/selectOffClassApplyDetail.do?classId="+classId;
+};
+
+//탭메뉴 이동(클래스소개, 오시는길, 문의하기)
+var fn_move = function(param) {
+	var offset = $("#"+param).offset();
+	$("html, body").animate({scrollTop : offset.top}, 400);
 };
 </script>
 </body>

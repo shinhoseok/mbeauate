@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.beauate.m.common.service.CommonUtils;
+import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.StringUtil;
 import com.beauate.m.jjim.service.JjimVO;
 import com.beauate.m.login.service.LoginVO;
 import com.beauate.m.mypage.service.MyPageService;
+import com.beauate.m.offClass.service.ClassVO;
 import com.beauate.m.pay.service.PayVO;
 import com.beauate.m.review.service.ReviewService;
+import com.beauate.m.review.service.ReviewVO;
 import com.beauate.m.user.service.UserVO;
 
 @Controller
@@ -155,7 +158,6 @@ public class MyPageController {
 	 *	----------- ------------------- ---------------------------------------
 	 *	2019. 10. 16  신호석			                    최초 작성 
 	 *	-----------------------------------------------------------------------
-	 * 
 	 * @param payVO
 	 * @return void
 	 * @throws Exception
@@ -241,7 +243,6 @@ public class MyPageController {
 	 *	----------- ------------------- ---------------------------------------
 	 *	2019. 10. 16  신호석			                    최초 작성 
 	 *	-----------------------------------------------------------------------
-	 * 
 	 * @param payVO
 	 * @return void
 	 * @throws Exception
@@ -388,5 +389,205 @@ public class MyPageController {
 		model.addAttribute("redirectUrl", redirectUrl);
 		
 		return "/common/temp_action_message";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 작성 가능한 리스트
+	 * 2. 처리내용 : 마이페이지 작성 가능한 리스트
+	 * </pre>
+	 * @Method Name : selectWritePossibleReviewList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param payVO
+	 * @param model
+	 * @return String /mypage/w/n/insertReviewProc.do
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/t/selectWritePossibleReviewList.do")
+	public String selectWritePossibleHoogiList() throws Exception {
+		return "/mypage/writePossibleReview";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 작성 가능한 리스트
+	 * 2. 처리내용 : 마이페이지 작성 가능한 리스트
+	 * </pre>
+	 * @Method Name : selectWritePossibleReviewList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param payVO
+	 * @param model
+	 * @return String /mypage/w/n/insertReviewProc.do
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/t/selectWritePossibleReviewListAjax.do")
+	public String selectWritePossibleReviewListAjax(@ModelAttribute("payVO") PayVO payVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		payVO.setUsrId(sessionVO.getUsrId());
+		payVO.setClassEndDt(DateUtil.getCurrentDateTime()); //종료일 오늘과 비교
+		payVO.setClassSt("4"); //클래스상태 종료된것만
+		Map<String, Object> rsltMap = myPageService.selectApplyClassList(payVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("payVO", payVO);
+		return "/mypage/writePossibleReviewAjax";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 하나의 클래스에 하나의 리뷰만 Ajax
+	 * 2. 처리내용 : 마이페이지 하나의 클래스에 하나의 리뷰만 Ajax
+	 * </pre>
+	 * @Method Name : selectUserReviewCnt
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectUserReviewCnt.do")
+	public String selectUserReviewCnt(ReviewVO reviewVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		
+		reviewVO.setUsrId(sessionVO.getUsrId());
+		int cnt = myPageService.selectUserReviewCnt(reviewVO);
+		model.addAttribute("cnt", cnt);
+		
+		return "jsonView";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 리뷰작성
+	 * 2. 처리내용 : 마이페이지 리뷰작성
+	 * </pre>
+	 * @Method Name : insertUserReview
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param classVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/insertUserReview.do")
+	public String insertUserReview(ClassVO classVO, ModelMap model) throws Exception {
+		
+		ClassVO resultVO = myPageService.insertUserReview(classVO);
+		model.addAttribute("resultVO", resultVO);
+		
+		return "/mypage/reviewInsert";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 리뷰작성 처리
+	 * 2. 처리내용 : 마이페이지 리뷰작성 처리
+	 * </pre>
+	 * @Method Name : insertReviewProc
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param payVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/w/n/insertReviewProc.do")
+	public String insertReviewProc(@ModelAttribute("reviewVO") ReviewVO reviewVO, ModelMap model, LoginVO sessionVO, SessionStatus status) throws Exception {
+		reviewVO.setUsrId(sessionVO.getUsrId());
+		myPageService.insertReviewProc(reviewVO);
+		status.setComplete();	//중복 submit 방지
+		String message = null;
+		message = "후기가 정상적으로 등록 되었습니다.";
+
+		model.addAttribute("message", message);
+		model.addAttribute("redirectUrl", "/offclass/a/t/selectOffClassDetail.do?classId="+reviewVO.getClassId()+"&detailGoTab=review");
+		return "/common/temp_action_message";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 내가 작성한 후기 리스트
+	 * 2. 처리내용 : 마이페이지 내가 작성한 후기 리스트
+	 * </pre>
+	 * @Method Name : selectMyWriteReviewList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userVO
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectMyWriteReviewList.do")
+	public String selectMyWriteReviewList() throws Exception {
+		return "/mypage/myWriteReview";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 내가 작성한 후기 리스트 ajax
+	 * 2. 처리내용 : 마이페이지 내가 작성한 후기 리스트 ajax
+	 * </pre>
+	 * @Method Name : selectMyWriteReviewListAjax
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param userVO
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectMyWriteReviewListAjax.do")
+	public String selectMyWriteReviewListAjax(@ModelAttribute("reviewVO") ReviewVO reviewVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		reviewVO.setUsrId(sessionVO.getUsrId());
+		Map<String, Object> rsltMap = myPageService.selectMyReviewList(reviewVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("reviewVO", reviewVO);
+		return "/mypage/myWriteReviewAjax";
 	}
 }

@@ -15,4 +15,4 @@
 <c:set var="scriptPath" value="${basePath}/contents/js"/>
 <c:set var="imagePath" value="${basePath}/contents/images"/>
 <c:set var="uploadPath" value="${basePath}/contents/upload"/>
-<%-- <c:set var="uploadPath" value="http://www.beauate.com/ucontents/upload"/> --%>
+<%-- <c:set var="uploadPath" value="https://www.beauate.com/ucontents/upload"/> --%>

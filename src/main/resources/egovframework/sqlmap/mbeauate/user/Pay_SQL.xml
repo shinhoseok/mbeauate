@@ -313,6 +313,7 @@
 			pay
 		WHERE 
 			u_sq = #{usrId}
+			AND del_yn = 'N'
 	</select>
 </mapper>
 

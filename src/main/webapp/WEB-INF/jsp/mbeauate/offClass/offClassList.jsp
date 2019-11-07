@@ -233,7 +233,7 @@ var fn_allSearchList = function() {
 		dataType: 'html',
 		data: params,
 		success: function(r) {
-			$('#target').children().remove();
+			$('#targetAllOffList').children().remove();
 			$('#targetAllOffList').html(r);
 		},
 		error : function(r) {

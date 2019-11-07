@@ -45,10 +45,10 @@
 		<ul class="btn_class_more">
 			<c:choose>
 				<c:when test="${lastIndex >= totalCnt}">
-					<li><a class="btn_arr_big" href="javascript:alert('마지막 페이지입니다.');">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
+					<li><a class="btn_arr_big" href="javascript:alert('마지막 페이지입니다.');">리뷰 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a class="btn_arr_big" href="javascript:void(0);" onclick="fn_searchReviewList();">클래스 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
+					<li><a class="btn_arr_big" href="javascript:void(0);" onclick="fn_searchReviewList();">리뷰 더보기<sapn class="num">(${lastIndex }/${totalCnt})</sapn></a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

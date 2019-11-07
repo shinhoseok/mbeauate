@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.beauate.m.coupon.service.CouponVO;
 import com.beauate.m.jjim.service.JjimVO;
+import com.beauate.m.offClass.service.ClassVO;
 import com.beauate.m.pay.service.PayVO;
 import com.beauate.m.review.service.ReviewVO;
 import com.beauate.m.user.service.UserVO;
@@ -360,4 +361,24 @@ public interface MyPageService {
 	 * @throws Exception
 	 */
 	public void deleteMemberProc(UserVO userVO) throws Exception;
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 리뷰작성
+	 * 2. 처리내용 : 마이페이지 리뷰작성
+	 * </pre>
+	 * @Method Name : insertUserReview
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param classVO
+	 * @return String
+	 * @throws Exception
+	 */
+	public ClassVO insertUserReview(ClassVO classVO) throws Exception;
 }

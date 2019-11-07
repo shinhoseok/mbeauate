@@ -213,6 +213,7 @@
 			cd2.mcls_nm c_st_nm,
 			c.c_gb,
 			c.c_category_st,
+			cd3.mcls_nm AS classCtStNm,
 			c.c_area_st,
 			cd.mcls_nm c_area_st_nm,
 			c.c_title,
@@ -228,7 +229,8 @@
 		FROM
 			off_class c 
 			LEFT JOIN common_cd_scls cd ON (c.c_area_st = cd.mcls_cd AND cd.lcls_cd='ARA')
-			LEFT JOIN common_cd_scls cd2 ON (c.c_st = cd.mcls_cd AND cd.lcls_cd='CST')
+			LEFT JOIN common_cd_scls cd2 ON (c.c_st = cd2.mcls_cd AND cd2.lcls_cd='CST')
+			LEFT JOIN common_cd_scls cd3 ON (c.c_category_st = cd3.mcls_cd AND cd3.lcls_cd='CCT')
 			LEFT JOIN users u ON (c.u_sq = u.u_sq)
 		WHERE 
 			c.c_sq = #{classId}

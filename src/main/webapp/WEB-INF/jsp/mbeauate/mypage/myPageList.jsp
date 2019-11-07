@@ -57,8 +57,8 @@
 			</ul>
 			<ul>
 				<h6>Review</h6>
-				<li><a class="btn_arr_big" href="#">작성가능한 후기</a></li>
-				<li><a class="btn_arr_big" href="#">내가 작성한 후기</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/t/selectWritePossibleReviewList.do">작성가능한 후기</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectMyWriteReviewList.do">내가 작성한 후기</a></li>
 			</ul>
 			<ul>
 				<h6>coupon</h6>
