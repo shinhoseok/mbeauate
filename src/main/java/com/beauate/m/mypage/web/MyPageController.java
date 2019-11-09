@@ -590,4 +590,91 @@ public class MyPageController {
 		model.addAttribute("reviewVO", reviewVO);
 		return "/mypage/myWriteReviewAjax";
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 후기수정 페이지
+	 * 2. 처리내용 :  마이페이지 후기수정 페이지
+	 * </pre>
+	 * @Method Name : updateUserReview
+	 * @date : 2019. 10. 16.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일			작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param String
+	 * @return ReviewVO
+	 * @throws Exception
+	 */ 
+	@RequestMapping(value = "/mypage/r/n/updateUserReview.do")
+	public String updateUserReview(ReviewVO reviewVO, ModelMap model) throws Exception {
+		ReviewVO resultVO = myPageService.updateUserReview(reviewVO);
+		resultVO.setImgSrc3(reviewVO.getImgSrc3());
+		model.addAttribute("resultVO", resultVO);
+		return "/mypage/reviewUpdate";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 후기 수정 처리
+	 * 2. 처리내용 :  마이페이지 후기 수정 처리
+	 * </pre>
+	 * @Method Name : updateHoogiPop
+	 * @date : 2019. 10. 16.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일			작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param String
+	 * @return ReviewVO
+	 * @throws Exception
+	 */ 
+	@RequestMapping(value = "/mypage/r/n/updateReviewProc.do")
+	public String updateReviewProc(ReviewVO reviewVO, ModelMap model, SessionStatus status) throws Exception {
+		myPageService.updateReviewProc(reviewVO);
+		status.setComplete();	//중복 submit 방지
+		String message = null;
+		message = "후기가 정상적으로 수정 되었습니다.";
+
+		model.addAttribute("message", message);
+		model.addAttribute("redirectUrl", "/offclass/a/t/selectOffClassDetail.do?classId="+reviewVO.getClassId()+"&detailGoTab=review");
+		return "/common/temp_action_message";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 후기 삭제
+	 * 2. 처리내용 :  마이페이지 후기 삭제
+	 * </pre>
+	 * @Method Name : updateHoogiPop
+	 * @date : 2019. 10. 16.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일			작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param String
+	 * @return ReviewVO
+	 * @throws Exception
+	 */ 
+	@RequestMapping(value = "/mypage/r/n/deleteReviewProc.do")
+	public String deleteReviewProc(ReviewVO reviewVO, ModelMap model, SessionStatus status) throws Exception {
+		reviewVO.setDelYn("Y");
+		myPageService.updateReviewProc(reviewVO);
+		status.setComplete();	//중복 submit 방지
+		String message = null;
+		message = "후기가 정상적으로 삭제 되었습니다.";
+
+		model.addAttribute("message", message);
+		model.addAttribute("redirectUrl", "/offclass/a/t/selectOffClassDetail.do?classId="+reviewVO.getClassId()+"&detailGoTab=review");
+		return "/common/temp_action_message";
+	}
 }

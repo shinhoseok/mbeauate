@@ -791,4 +791,26 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		}
 		return resultVO;
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 후기수정 페이지
+	 * 2. 처리내용 : 마이페이지 후기수정 페이지
+	 * </pre>
+	 * @Method Name : updateUserReview
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param reviewVO
+	 * @return ReviewVO
+	 * @throws Exception
+	 */
+	public ReviewVO updateUserReview(ReviewVO reviewVO) throws Exception {
+		return reviewDao.selectReviewMngDetail(reviewVO);
+	}
 }

@@ -125,15 +125,15 @@
 							</ul>
 						</div>
 						<!-- //별점-->
-						<a href="#" class="btn_r2">수정</a>
+						<a href="javascript:void(0);" onclick="javascript:fn_updateReview('${list.reviewId }','${list.imgSrc3 }');" class="btn_r2">수정</a>
 					</div>
 					<p><c:out value="${list.reviewCtt }"/></p>
 					<c:if test="${fn:length(list.commentList) != 0}">
-						<c:forEach items="${list.commentList}" var="commList" varStatus="i">
+						<c:forEach items="${list.commentList}" var="commList" varStatus="status">
 							<div>
-								<a class="reply" href="javascript:void(0);" onclick="javascript:fn_commentShowOrHide();"><span>댓글보기</span><span class="num">${fn:length(list.commentList)}</span></a>
+								<a class="reply" href="javascript:void(0);" onclick="javascript:fn_commentShowOrHide('${i.index}');"><span>댓글보기</span><span class="num">${fn:length(list.commentList)}</span></a>
 							</div>
-							<div class="rev_reply" style="display: none;">
+							<div class="rev_reply" id="rev_reply${i.index}" style="display: none;">
 								<div>
 									<span class="rev_mentor"><c:out value="${commList.usrNm }"/></span>
 									<span class="num font_40">
@@ -171,14 +171,16 @@
 
 <script type="text/javascript">
 //댓글보기 show&hide
-var fn_commentShowOrHide = function() {
-	alert("준비중입니다.");
-	//홈페이지도 이상함 다시 봐야함
-// 	if($("#my_r4_m").css("display") == "none") {
-// 		$("#my_r4_m").show();
-// 	} else {
-// 		$("#my_r4_m").hide();
-// 	}
+var fn_commentShowOrHide = function(idx) {
+	if($("#rev_reply"+idx).css("display") == "none") {
+		$("#rev_reply"+idx).show();
+	} else {
+		$("#rev_reply"+idx).hide();
+	}
 };
 
+//후기수정
+var fn_updateReview = function(reviewId, imgSrc3) {
+	location.href="${basePath}/mypage/r/n/updateUserReview.do?reviewId="+reviewId+"&imgSrc3="+imgSrc3;
+};
 </script>
