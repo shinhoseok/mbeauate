@@ -182,6 +182,7 @@ function fn_searchReviewList(){
 var fn_selectReviewList = function() {
 	var params = {};
 	params.pageIndex = cuurPage;
+	params.classId = "${rslt.resultVO.classId}";
 	$.ajax({	
 		url: "${basePath}/offclass/a/n/selectReviewList.do",
 		data: params,
