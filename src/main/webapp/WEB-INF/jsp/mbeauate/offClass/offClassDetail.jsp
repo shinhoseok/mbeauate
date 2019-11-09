@@ -100,7 +100,6 @@
 				</div>
 			</div>
 			<div class="class_detail_img line_t10g">
-<%-- 				<img src="${imagePath}/sub/class_detail_mo.jpg" /> --%>
 				<img src="${uploadPath}/<c:out value="${rslt.resultVO.imgSrc2 }"/>" />
 			</div>
 			<div class="class_location" id="location">

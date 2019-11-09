@@ -32,6 +32,23 @@
 						</span>
 					</div>
 					<p class="font_60"><c:out value="${list.reviewCtt}"/></p>
+					<c:if test="${fn:length(list.commentList) != 0}">
+						<c:forEach items="${list.commentList}" var="commList" varStatus="status">
+							<div>
+								<a class="reply" href="javascript:void(0);" onclick="javascript:fn_commentShowOrHide('${i.index}');"><span>댓글보기</span><span class="num">${fn:length(list.commentList)}</span></a>
+							</div>
+							<div class="rev_reply" id="rev_reply${i.index}" style="display: none;">
+								<div>
+									<span class="rev_mentor"><c:out value="${commList.usrNm }"/></span>
+									<span class="num font_40">
+										<fmt:parseDate value="${commList.commentDt}" var="commentDt" pattern="yyyy-MM-dd"/>
+										<fmt:formatDate value="${commentDt}" pattern="yyyy.MM.dd"/>
+									</span>
+								</div>
+								<p><c:out value="${commList.commentCtt }"/></p>
+							</div>
+						</c:forEach>
+					</c:if>
 				</div>
 			</c:forEach>
 		</c:when>
@@ -54,3 +71,14 @@
 		</ul>
 	</div>
 </div>
+
+<script type="text/javascript">
+//댓글보기 show&hide
+var fn_commentShowOrHide = function(idx) {
+	if($("#rev_reply"+idx).css("display") == "none") {
+		$("#rev_reply"+idx).show();
+	} else {
+		$("#rev_reply"+idx).hide();
+	}
+};
+</script>

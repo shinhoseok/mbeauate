@@ -481,7 +481,7 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		if(cnt > 0){
 			//리스트
 			selectList = reviewDao.selectMyReviewList(reviewVO);
-			//이미지 경로수정 yyyyMM/파일명
+			//이미지 경로수정 yyyyMM/파일명 및 댓글리스트 포함시키기
 			selectList = fullImgPathChang3(selectList);
 		}
 		

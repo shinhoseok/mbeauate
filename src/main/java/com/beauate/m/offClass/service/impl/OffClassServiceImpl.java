@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.beauate.m.code.service.CodeDao;
 import com.beauate.m.code.service.CodeVO;
+import com.beauate.m.comment.service.CommentDao;
+import com.beauate.m.comment.service.CommentVO;
 import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.GlobalConstants;
 import com.beauate.m.common.service.StringUtil;
@@ -63,6 +65,9 @@ public class OffClassServiceImpl implements OffClassService{
 	
 	@Resource(name="reviewDao")
 	private ReviewDao reviewDao;
+	
+	@Resource(name="commentDao")
+	private CommentDao commentDao;
 	
 	/**
 	 * <pre>
@@ -453,6 +458,15 @@ public class OffClassServiceImpl implements OffClassService{
 			rsltMap.put("timeProStarSum", timeProStarSum);
 			rsltMap.put("kindnessStarSum", kindnessStarSum);
 			rsltMap.put("curriculumStarSum", curriculumStarSum);
+		}
+		
+		//댓글리스트 포함
+		CommentVO commentVO = new CommentVO();
+		for(int i=0; i<selectList.size(); i++) {
+			String reviewId = selectList.get(i).getReviewId();
+			commentVO.setReviewId(reviewId);
+			List<CommentVO> resultVO = commentDao.selectCommentDetail(commentVO);
+			selectList.get(i).setCommentList(resultVO);
 		}
 		
 		rsltMap.put("selectList", selectList);
