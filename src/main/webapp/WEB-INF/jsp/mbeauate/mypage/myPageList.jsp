@@ -67,8 +67,8 @@
 			</ul>
 			<ul>
 				<h6>Review</h6>
-				<li><a class="btn_arr_big" href="#">결제내역</a></li>
-				<li><a class="btn_arr_big" href="#">취소/환불 내역</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectPayHistoryList.do">결제내역</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectPayCancelList.do">취소/환불 내역</a></li>
 			</ul>
 			<!--//마이페이지_메뉴-->
 		</div>

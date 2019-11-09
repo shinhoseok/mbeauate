@@ -795,4 +795,110 @@ public class MyPageController {
 		
 		return "/mypage/manRyoCpnListAjax";
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 결재내역 화면
+	 * 2. 처리내용 : 마이페이지 결재내역 화면
+	 * </pre>
+	 * @Method Name : selectPayHistoryList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return String
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectPayHistoryList.do")
+	public String selectPayHistoryList() throws Exception {
+		return "/mypage/payHistoryList";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 결재내역 리스트 ajax
+	 * 2. 처리내용 : 마이페이지 결재내역 리스트 ajax
+	 * </pre>
+	 * @Method Name : selectPayHisotryAjaxList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectPayHisotryListAjax.do")
+	public String selectPayHisotryListAjax(PayVO payVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		payVO.setUsrId(sessionVO.getUsrId());
+		payVO.setPaySt("1"); //결재완료 코드
+		Map<String, Object> rsltMap = myPageService.selectPayHisotryAjaxList(payVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("payVO", payVO);
+		return "/mypage/payHistoryAjax";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 취소/환불 리스트
+	 * 2. 처리내용 : 마이페이지 취소/환불 리스트
+	 * </pre>
+	 * @Method Name : selectPayCancelList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectPayCancelList.do")
+	public String selectPayCancelList() throws Exception {
+		return "/mypage/payCancelList";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 취소/환불 리스트 Ajax
+	 * 2. 처리내용 : 마이페이지 취소/환불 리스트 Ajax
+	 * </pre>
+	 * @Method Name : selectPayCancelListAjax
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectPayCancelListAjax.do")
+	public String selectPayCancelListAjax(PayVO payVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		payVO.setUsrId(sessionVO.getUsrId());
+		payVO.setPaySt("2"); //결재완료 1만 아니면됨.
+		Map<String, Object> rsltMap = myPageService.selectPayHisotryAjaxList(payVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("payVO", payVO);
+		return "/mypage/payCancelListAjax";
+	}
 }

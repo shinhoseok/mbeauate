@@ -34,7 +34,6 @@ import com.beauate.m.user.service.UserVO;
 
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
-import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Service("myPageService")
 public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPageService {
@@ -637,19 +636,26 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		
 		//페이징 
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(payVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(payVO.getPageUnit());
-		paginationInfo.setPageSize(payVO.getPageSize());
-		
-		payVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		payVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		payVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 16; //16개씩 페이징
+		int pageIndex = payVO.getPageIndex();
+		int cnt = payDao.selectPayListCnt(payVO); //총카운트
+		payVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			if(cnt > pageUnit) {
+				payVO.setLastIndex(pageUnit);
+			} else {
+				payVO.setLastIndex(cnt);
+			}
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			if(cnt > lastIndex) {
+				payVO.setLastIndex(lastIndex);
+			} else {
+				payVO.setLastIndex(cnt);
+			}
+		}
 
 		List<PayVO> selectList = null;
-		//총 카운트 
-		int cnt = payDao.selectPayListCnt(payVO);
-		paginationInfo.setTotalRecordCount(cnt);
 		
 		if(cnt > 0){
 			//리스트
@@ -659,7 +665,6 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 			}
 		}
 		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		
