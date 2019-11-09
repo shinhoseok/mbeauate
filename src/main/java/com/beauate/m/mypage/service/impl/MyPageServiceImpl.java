@@ -16,7 +16,6 @@ import com.beauate.m.common.service.CommonUtils;
 import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.StringUtil;
 import com.beauate.m.coupon.service.CouponDao;
-import com.beauate.m.coupon.service.CouponVO;
 import com.beauate.m.couponhistory.service.CouponHistoryDao;
 import com.beauate.m.couponhistory.service.CouponHistoryVO;
 import com.beauate.m.jjim.service.JjimDao;
@@ -99,9 +98,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	public Map<String, Object> selectMyPageList(PayVO payVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		int myPayCnt = payDao.selectMyPayCnt(payVO);
+		
 		CouponHistoryVO couponHistoryVO = new CouponHistoryVO();
 		couponHistoryVO.setUsrId(payVO.getUsrId());
-		int myCouponCnt = couponHistoryDao.selectMyCouponCnt(couponHistoryVO);
+		couponHistoryVO.setCpnFl("Y");
+		couponHistoryVO.setComPare(">="); //쿼리 구분 오늘날짜보다 크거나 같으면 만료아님
+		int myCouponCnt = couponHistoryDao.selectMyCouponListCnt(couponHistoryVO);
 		
 		rsltMap.put("myPayCnt", myPayCnt);
 		rsltMap.put("myCouponCnt", myCouponCnt);
@@ -538,6 +540,30 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : 사용가능한 쿠폰카운트
+	 * 2. 처리내용 : 사용가능한 쿠폰카운트
+	 * </pre>
+	 * @Method Name : selectCouponListCnt
+	 * @date : 2019. 10. 12.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일					작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param couponVO
+	 * @return Map<String, Object>
+	 * @throws Exception
+	 */ 
+	public Integer selectCouponListCnt(CouponHistoryVO couponHistoryVO) throws Exception {
+		couponHistoryVO.setCpnFl("Y");
+		couponHistoryVO.setComPare(">="); //쿼리 구분 오늘날짜보다 크거나 같으면 만료아님
+		return couponHistoryDao.selectMyCouponListCnt(couponHistoryVO);
+	}
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : 사용 가능한 쿠폰 리스트
 	 * 2. 처리내용 : 사용 가능한 쿠폰 리스트
 	 * </pre>
@@ -554,31 +580,35 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * @return Map<String, Object>
 	 * @throws Exception
 	 */ 
-	public Map<String, Object> selectCouponList(CouponVO couponVO) throws Exception {
+	public Map<String, Object> selectCouponList(CouponHistoryVO couponHistoryVO) throws Exception {
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
-		
 		//페이징 
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(couponVO.getPageIndex());
-		couponVO.setPageUnit(6); //한페이지당 게시물수 6
-		paginationInfo.setRecordCountPerPage(couponVO.getPageUnit());
-		paginationInfo.setPageSize(couponVO.getPageSize());
-		
-		couponVO.setFirstIndex(paginationInfo.getFirstRecordIndex()+1); 
-		couponVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		couponVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		int pageUnit = 16; //16개씩 페이징
+		int pageIndex = couponHistoryVO.getPageIndex();
+		int cnt = couponHistoryDao.selectMyCouponListCnt(couponHistoryVO); //총카운트
+		couponHistoryVO.setFirstIndex(1);
+		if(pageIndex == 1) {
+			if(cnt > pageUnit) {
+				couponHistoryVO.setLastIndex(pageUnit);
+			} else {
+				couponHistoryVO.setLastIndex(cnt);
+			}
+		} else {
+			int lastIndex = pageUnit*pageIndex;
+			if(cnt > lastIndex) {
+				couponHistoryVO.setLastIndex(lastIndex);
+			} else {
+				couponHistoryVO.setLastIndex(cnt);
+			}
+		}
 
-		List<CouponVO> selectList = null;
-		//총 카운트 
-		int cnt = couponDao.selectCouponMngListCnt(couponVO);
-		paginationInfo.setTotalRecordCount(cnt);
+		List<CouponHistoryVO> selectList = null;
 		
 		if(cnt > 0){
 			//리스트
-			selectList = couponDao.selectCouponMngList(couponVO);
+			selectList = couponHistoryDao.selectMyCouponList(couponHistoryVO);
 		}
 		
-		rsltMap.put("paginationInfo", paginationInfo);
 		rsltMap.put("selectList", selectList);
 		rsltMap.put("selectListCnt", cnt);
 		

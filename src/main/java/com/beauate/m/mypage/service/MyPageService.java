@@ -2,7 +2,7 @@ package com.beauate.m.mypage.service;
 
 import java.util.Map;
 
-import com.beauate.m.coupon.service.CouponVO;
+import com.beauate.m.couponhistory.service.CouponHistoryVO;
 import com.beauate.m.jjim.service.JjimVO;
 import com.beauate.m.offClass.service.ClassVO;
 import com.beauate.m.pay.service.PayVO;
@@ -224,6 +224,26 @@ public interface MyPageService {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : 사용가능한 쿠폰카운트
+	 * 2. 처리내용 : 사용가능한 쿠폰카운트
+	 * </pre>
+	 * @Method Name : selectCouponListCnt
+	 * @date : 2019. 10. 12.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일					작성자					변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param couponVO
+	 * @return Map<String, Object>
+	 * @throws Exception
+	 */ 
+	public Integer selectCouponListCnt(CouponHistoryVO couponHistoryVO) throws Exception;
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : 사용 가능한 쿠폰 리스트
 	 * 2. 처리내용 : 사용 가능한 쿠폰 리스트
 	 * </pre>
@@ -240,7 +260,7 @@ public interface MyPageService {
 	 * @return Map<String, Object>
 	 * @throws Exception
 	 */ 
-	public Map<String, Object> selectCouponList(CouponVO couponVO) throws Exception;
+	public Map<String, Object> selectCouponList(CouponHistoryVO couponHistoryVO) throws Exception;
 	
 	/**
 	 * <pre>

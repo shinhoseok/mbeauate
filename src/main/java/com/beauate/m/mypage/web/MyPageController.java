@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.beauate.m.common.service.CommonUtils;
 import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.StringUtil;
+import com.beauate.m.couponhistory.service.CouponHistoryVO;
 import com.beauate.m.jjim.service.JjimVO;
 import com.beauate.m.login.service.LoginVO;
 import com.beauate.m.mypage.service.MyPageService;
@@ -676,5 +677,122 @@ public class MyPageController {
 		model.addAttribute("message", message);
 		model.addAttribute("redirectUrl", "/offclass/a/t/selectOffClassDetail.do?classId="+reviewVO.getClassId()+"&detailGoTab=review");
 		return "/common/temp_action_message";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 사용가능한 쿠폰 화면
+	 * 2. 처리내용 : 마이페이지 사용가능한 쿠폰 화면
+	 * </pre>
+	 * @Method Name : selectUsePossibleCpnList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param payVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectUsePossibleCpnList.do")
+	public String selectUsePossibleCpnList(CouponHistoryVO couponHistoryVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		couponHistoryVO.setUsrId(sessionVO.getUsrId());
+		int couponCnt = myPageService.selectCouponListCnt(couponHistoryVO);
+		model.addAttribute("couponCnt", couponCnt);
+		return "/mypage/usePossibleCpnList";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 할인쿠폰 리스트 ajax
+	 * 2. 처리내용 : 마이페이지 할인쿠폰 리스트 ajax
+	 * </pre>
+	 * @Method Name : selectPossibleCouponList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param userVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectUsePossibleCpnListAjax.do")
+	public String selectUsePossibleCpnListAjax(CouponHistoryVO couponHistoryVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		
+		couponHistoryVO.setUsrId(sessionVO.getUsrId());
+		couponHistoryVO.setCpnFl("Y");
+		couponHistoryVO.setComPare(">="); //쿼리 구분 오늘날짜보다 크거나 같으면 만료아님
+
+		Map<String, Object> rsltMap = myPageService.selectCouponList(couponHistoryVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("couponHistoryVO", couponHistoryVO);
+		
+		return "/mypage/usePossibleCpnListAjax";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 만료쿠폰 리스트
+	 * 2. 처리내용 : 마이페이지 만료쿠폰 리스트
+	 * </pre>
+	 * @Method Name : selectManRyoCouponList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param userVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/t/selectManRyoCouponList.do")
+	public String selectManRyoCouponList() throws Exception {
+		return "/mypage/manRyoCpnList";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 마이페이지 만료쿠폰 리스트 ajax
+	 * 2. 처리내용 : 마이페이지 만료쿠폰 리스트 ajax
+	 * </pre>
+	 * @Method Name : selectManRyoCouponList
+	 * @date : 2019. 5. 17.
+	 * @author : 신호석
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * @param userVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/mypage/r/n/selectManRyoCouponListAjax.do")
+	public String selectManRyoCouponListAjax(CouponHistoryVO couponHistoryVO, ModelMap model, LoginVO sessionVO) throws Exception {
+		
+		couponHistoryVO.setUsrId(sessionVO.getUsrId());
+		couponHistoryVO.setCpnFl("N");
+		couponHistoryVO.setComPare("<"); //쿼리 구분 오늘날짜가 더크면 만료
+		
+		Map<String, Object> rsltMap = myPageService.selectCouponList(couponHistoryVO);
+		model.addAttribute("rslt", rsltMap);
+		model.addAttribute("couponHistoryVO", couponHistoryVO);
+		
+		return "/mypage/manRyoCpnListAjax";
 	}
 }

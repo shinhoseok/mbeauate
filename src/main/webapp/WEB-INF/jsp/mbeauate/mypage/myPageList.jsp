@@ -62,8 +62,8 @@
 			</ul>
 			<ul>
 				<h6>coupon</h6>
-				<li><a class="btn_arr_big" href="#">사용가능한 쿠폰</a></li>
-				<li><a class="btn_arr_big" href="#">사용/만료 쿠폰</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectUsePossibleCpnList.do">사용가능한 쿠폰</a></li>
+				<li><a class="btn_arr_big" href="${basePath}/mypage/r/t/selectManRyoCouponList.do">사용/만료 쿠폰</a></li>
 			</ul>
 			<ul>
 				<h6>Review</h6>
