@@ -35,7 +35,7 @@
 		</c:choose>
 	</ul>
 </div>
-<div class="menu_list_txt">
+<div class="menu_list_txt2">
 	<c:set var="lastIndex" value="${payVO.lastIndex}"/>
 	<c:set var="totalCnt" value="${rslt.selectListCnt}"/>
 	<ul class="btn_class_more">

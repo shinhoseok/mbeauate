@@ -28,7 +28,7 @@
 	</ul>
 </div>
 <!-- //쿠폰 리스트---->
-<div class="menu_list_txt">
+<div class="menu_list_txt2">
 	<c:set var="lastIndex" value="${couponHistoryVO.lastIndex}"/>
 	<c:set var="totalCnt" value="${rslt.selectListCnt}"/>
 	<ul class="btn_class_more">
