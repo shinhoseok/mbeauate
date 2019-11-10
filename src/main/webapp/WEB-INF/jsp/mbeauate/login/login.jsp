@@ -32,11 +32,11 @@
 									<ul class="input-area">
 										<li>
 											<form:input path="emailAddr" id="emailAddr" placeholder="이메일" title="이메일을 입력해주세요." maxlength="21" />
-											<span class="emp"></span>
+											<span class="emp" id="emailAddrEmp"></span>
 										</li>
 										<li>
 											<form:password id="usrPw" path="usrPw" onkeypress="if(event.keyCode==13){fn_login();} " placeholder="비밀번호" title="비밀번호를 입력해주세요." maxlength="21" />
-											<span class="emp"></span>
+											<span class="emp" id="usrPwEmp"></span>
 										</li>
 									</ul>
 									<div class="btn-area">
@@ -74,7 +74,8 @@ var isValid;
 
 var fn_login = function() {
 	isValid = true;
-	$("#userVO span.emp").text("");
+	$("#emailAddrEmp").text("");
+	$("#usrPwEmp").text("");
 	if(!$.trim($("#emailAddr").val())) {
 		$("#emailAddr").parent().find("span").text("이메일을 입력해 주세요").show();
 		isValid = false;
@@ -106,7 +107,7 @@ var fn_login = function() {
 		success: function(r) { 
 			
 			if(r.message == 'N') {
-				$("#emailAddr").parent().find("span").text("사용자정보가 존재하지 않습니다.").show();
+				$("#emailAddr").parent().find("span").text("이메일 또는 비밀번호를 다시 확인해주세요.").show();
 				$("#emailAddr").focus();
 				return;
 			} else{
