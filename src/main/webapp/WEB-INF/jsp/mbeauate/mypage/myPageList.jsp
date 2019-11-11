@@ -38,7 +38,7 @@
 								<li class="num"><c:out value="${rslt.myPayCnt }"/></li>
 							</ul>
 					</a></li>
-					<li><a href="">
+					<li><a href="${basePath}/mypage/r/n/selectUsePossibleCpnList.do">
 							<ul>
 								<li class="btn_arr">사용가능한 쿠폰</li>
 								<li class="num"><c:out value="${rslt.myCouponCnt }"/></li>

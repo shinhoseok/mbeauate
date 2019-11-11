@@ -83,8 +83,7 @@ public class OffClassServiceImpl implements OffClassService{
 	 *	----------- ------------------- ---------------------------------------
 	 *	2019. 10. 16  신호석			                    최초 작성 
 	 *	-----------------------------------------------------------------------
-	 * 
-	 * @param userVO
+	 * @param classVO
 	 * @return
 	 * @throws Exception
 	 */ 

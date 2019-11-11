@@ -227,6 +227,7 @@ var fn_allSearchList = function() {
 	var params = {};
 	params.pageIndex = cuurPage;
 	params.classAreaSt = classAreaSt;
+	params.classCtSt = "${classVO.classCtSt}";
 	$.ajax({	
 		url: "${basePath}/offclass/a/n/selectOffClassAjaxList.do",
 		type: 'POST',

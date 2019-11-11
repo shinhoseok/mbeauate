@@ -22,7 +22,7 @@
 				<div class="swiper-bar"></div>
 				<div class="swiper-scrollbar"></div>
 				<div class="swiper-num num">1/9</div>
-				<img src="${imagePath}/temp/main_bn_img.jpg">
+				<img src="${imagePath}/temp/main_bn_img.jpg"/>
 			</div>
 			<!--//메인배너-->
 			<!--전문가 교육소식-->
@@ -37,7 +37,7 @@
 					</a></li>
 				</ul>
 				<div class="btn_more">
-					<a clas="icon_arr_more" href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1"> 클래스 더보기 </a>
+					<a clas="icon_arr_more" href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1" style="position:relative; z-index:9999;"> 클래스 더보기 </a>
 				</div>
 			</div>
 			<!--//전문가 교육소식-->
@@ -49,32 +49,32 @@
 							각 분야의 뷰티전문가를 <br>만나보세요.
 						</p>
 					</h2>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_hair.png" />
 							</div> 헤어
 					</a></li>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=2">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=2" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_makeup.png" />
 							</div> 메이크업
 					</a></li>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=3">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=3" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_eyelash.png" />
 							</div> 속눈썹/반영구
 					</a></li>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=4">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=4" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_skin.png" />
 							</div> 피부/왁싱
 					</a></li>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=5">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=5" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_nail.png" />
 							</div> 네일
 					</a></li>
-					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=6">
+					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=6" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_etc.png" />
 							</div> 기타
@@ -106,134 +106,36 @@
 					<img src="${imagePath}/temp/tit_special.jpg" />
 				</h2>
 				<div class="list2_wrap">
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
+					<c:choose>
+						<c:when test="${fn:length(bestList) != 0}">
+							<c:forEach items="${bestList}" var="list" varStatus="i">
+								<div class="list2_item">
+									<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId }">
+										<div class="img_wrap">
+											<div class="img">
+												<img src="${uploadPath}/<c:out value="${list.imgSrc }"/>" alt="" />
+											</div>
+										</div>
+										<div class="text_wrap">
+											<div class="tit"><c:out value="${list.classAreaStNm }"/></div>
+											<div class="tit_info font_60"><c:out value="${list.classTitle }"/></div>
+											<div class="etc_info">
+												<span>개강</span>
+												<span class="day_open">
+													<fmt:parseDate value="${list.classStartDt}" var="classStartDt" pattern="yyyy-MM-dd"/> 
+													<fmt:formatDate value="${classStartDt}" pattern="yyyy-MM-dd"/>
+												</span>
+											</div>
+										</div>
+									</a>
 								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="list2_item">
-						<a href="#">
-							<div class="img_wrap">
-								<div class="img">
-									<img src="${imagePath}/temp/img-tumb-290x295_2.png" alt="" />
-								</div>
-							</div>
-							<div class="text_wrap">
-								<div class="tit">대구</div>
-								<div class="tit_info font_60">Self-하루만에 배우는 감쪽같은 속눈썹! 내 눈에 맞…</div>
-								<div class="etc_info">
-									<span>개강</span><span class="day_open">7월 23일(화)</span>
-								</div>
-							</div>
-						</a>
-					</div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<br/><br/>
+							<li>데이터가 없습니다.</li>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<!--//스페셜멘토 리스트-->

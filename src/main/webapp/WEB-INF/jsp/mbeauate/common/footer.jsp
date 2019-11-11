@@ -17,7 +17,7 @@
 	<div class="info">
 		<ul class="row">
 			<li><a href="javascript:alert('준비중 입니다.');">개인정보취급방침</a></li>
-			<li><a href="javascript:alert('준비중 입니다.');">이용약관</a></li>
+			<li><a href="https://docs.google.com/document/d/1bnaICcR8reoAvfMxg2wP8jGKy0V3_SC0X6Yv4cwkctc/edit" style="position:relative; z-index:9999;">이용약관</a></li>
 			<li><a href="javascript:alert('준비중 입니다.');">멘토문의</a></li>
 			<li><a href="#">공지사항</a></li>
 		</ul>
