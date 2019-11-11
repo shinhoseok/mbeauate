@@ -29,11 +29,11 @@
 			<div class="about_class">
 				<h2>전문가 교육소식</h2>
 				<ul>
-					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
+					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_01.jpg" />
 					</a></li>
 					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
 					</a></li>
-					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_02.jpg" />
+					<li><a href="javascript:void(0);"> <img src="${imagePath}/temp/list_03.jpg" />
 					</a></li>
 				</ul>
 				<div class="btn_more">
@@ -44,11 +44,10 @@
 			<!--뷰티메뉴-->
 			<div>
 				<ul class="main_list_img">
-					<h2>
-						<p>
-							각 분야의 뷰티전문가를 <br>만나보세요.
-						</p>
-					</h2>
+					<div class="menu_logo">
+						<h2>뷰아떼</h2>
+						<p>각 분야의 뷰티전문가를 <br>만나보세요.</p>
+					</div>
 					<li><a href="${basePath}/offclass/a/t/selectOffClassList.do?classCtSt=1" style="position:relative; z-index:9999;">
 							<div>
 								<img src="${imagePath}/common/icon_beauty_hair.png" />

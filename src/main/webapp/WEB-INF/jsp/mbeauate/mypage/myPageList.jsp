@@ -71,6 +71,7 @@
 				<li><a class="btn_arr_big" href="${basePath}/mypage/r/n/selectPayCancelList.do">취소/환불 내역</a></li>
 			</ul>
 			<!--//마이페이지_메뉴-->
+			<div class="h60"></div>
 		</div>
 		<!--메뉴-->
 		<div id="floating_menu">

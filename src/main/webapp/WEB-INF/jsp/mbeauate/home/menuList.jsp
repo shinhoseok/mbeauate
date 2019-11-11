@@ -63,6 +63,7 @@
 						<li><a class="btn_arr_big" href="${basePath}/login/a/n/logOut.do">로그아웃</a></li>
 					</ul>
 				</div>
+				<div class="h60"></div>
 			</div>
 			<!--메뉴-->
 			<div id="floating_menu">

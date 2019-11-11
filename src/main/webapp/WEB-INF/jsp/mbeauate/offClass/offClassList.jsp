@@ -45,9 +45,41 @@
 		<section>
 			<div class="offclass_list_wrap">
 				<!--클래스시작배너-->
-				<div class="img_class">
-					<img src="${imagePath}/sub/bn_class_hair.jpg" />
-				</div>
+				<c:choose>
+					<c:when test="${classVO.classCtSt eq '1'}">
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_hair.jpg" />
+						</div>
+					</c:when>
+					<c:when test="${classVO.classCtSt eq '2'}">
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_makeup.jpg" />
+						</div>
+					</c:when>
+					<c:when test="${classVO.classCtSt eq '3'}">
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_eyelash.jpg" />
+						</div>
+					</c:when>
+					<c:when test="${classVO.classCtSt eq '4'}">
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_skin.jpg" />
+						</div>
+					</c:when>
+					<c:when test="${classVO.classCtSt eq '5'}">
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_nail.jpg" />
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="img_class">
+							<img src="${imagePath}/sub/bn_class_etc.jpg" />
+						</div>
+					</c:otherwise>
+				</c:choose>
+
+
+				
 				<!--//클래스시작배너-->
 				<!--best클래스-->
 				<div class="list2_wrap">
