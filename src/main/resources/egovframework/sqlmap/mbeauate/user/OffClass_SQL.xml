@@ -35,7 +35,17 @@
 	최초작성일 : 2019. 9.12
 	-->	
 	<select id="selectOffClassList" parameterType="classVO" resultMap="classMap">
-		SELECT 
+		SELECT f.* FROM 
+		(SELECT ROW_NUMBER() OVER(
+			<choose>
+				<when test="sortSubject == 'newOffClass'">
+				ORDER BY c.c_sq desc
+				</when>
+				<otherwise>
+				ORDER BY c.u_start_dt desc
+				</otherwise>
+			</choose>
+				) RNUM,
 			c.c_sq,
 			c.u_sq,
 			c.img_sq,
@@ -69,17 +79,12 @@
 			<if test="classAreaSt != null and classAreaSt != ''">
 				AND c.c_area_st = #{classAreaSt}
 			</if>
+		</where>
+		) f
+		<where>
 			<if test="imgCnt != null and imgCnt != ''">
-				AND ROWNUM <![CDATA[ <= ]]> #{imgCnt}
+				AND f.RNUM <![CDATA[ <= ]]> #{imgCnt}
 			</if>
-			<choose>
-				<when test="sortSubject == 'classApplyNo'">
-					ORDER BY c.c_apply_no desc
-				</when>
-				<otherwise>
-					ORDER BY c.u_start_dt desc
-				</otherwise>
-			</choose>
 		</where>
 	</select>
 	

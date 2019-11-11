@@ -1,6 +1,6 @@
 package com.beauate.m.home.web;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -40,8 +40,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value="/home/a/n/main.do")
 	public String main(ClassVO classVO, ModelMap model) throws Exception{
-		List<ClassVO> bestList = homeService.selectMainList(classVO);
-		model.addAttribute("bestList", bestList);
+		Map<String, Object> rsltMap = homeService.selectMainList(classVO);
+		model.addAttribute("rslt", rsltMap);
 		return "/home/main";
 	}
 	

@@ -1,6 +1,6 @@
 package com.beauate.m.home.service;
 
-import java.util.List;
+import java.util.Map;
 
 import com.beauate.m.offClass.service.ClassVO;
 
@@ -23,5 +23,5 @@ public interface HomeService {
 	 * @return
 	 * @throws Exception
 	 */ 
-	public List<ClassVO> selectMainList(ClassVO classVO) throws Exception;
+	public Map<String, Object> selectMainList(ClassVO classVO) throws Exception;
 }

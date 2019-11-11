@@ -33,10 +33,11 @@ import com.beauate.m.review.service.ReviewVO;
 import com.beauate.m.user.service.UserDao;
 import com.beauate.m.user.service.UserVO;
 
+import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
 @Service("offClassService")
-public class OffClassServiceImpl implements OffClassService{
+public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffClassService{
 	protected Log log = LogFactory.getLog(this.getClass());
 	
 	@Resource(name="offClassDao")
@@ -91,9 +92,9 @@ public class OffClassServiceImpl implements OffClassService{
 		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		String today = DateUtil.getCurrentYearMonthDay();
 		log.debug(">>>>>>>>>>>>>>>>>>> selectOffClassList ClassCtSt >>>>>>>>>>>>>>>>>>>>>>>> "+classVO.getClassCtSt());
-		//베스트 6장
+		//마감임박 6장
 		classVO.setImgCnt("6");
-		classVO.setSortSubject("classApplyNo");
+		classVO.setSortSubject("hurryOffClass");
 		List<ClassVO> bestList = offClassDao.selectOffClassList(classVO);
 		if(bestList != null) {
 			bestList = fullImgPathChang(bestList);
@@ -101,7 +102,7 @@ public class OffClassServiceImpl implements OffClassService{
 		
 		//********************최신 3장
 		classVO.setImgCnt("3");
-		classVO.setSortSubject("classStartDt");
+		classVO.setSortSubject("newOffClass");
 		List<ClassVO> newList = offClassDao.selectOffClassList(classVO);
 		if(newList != null) {
 			newList = fullImgPathChang33(newList);

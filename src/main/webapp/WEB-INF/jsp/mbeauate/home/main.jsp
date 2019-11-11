@@ -15,6 +15,9 @@
 <script type="text/javascript" src="${scriptPath}/jquery/jquery-1.11.2.min.js"></script>
 </head>
 <body>
+<!-- 오늘날짜 todayNum -->
+<fmt:parseDate value="${rslt.today}" var="todayParseDate" pattern="yyyy-MM-dd"/> 
+<fmt:parseNumber value="${todayParseDate.time / (1000*60*60*24)}" integerOnly="true" var="todayNum"/>
 	<div id="wrap">
 		<section>
 			<!--메인배너-->
@@ -106,13 +109,29 @@
 				</h2>
 				<div class="list2_wrap">
 					<c:choose>
-						<c:when test="${fn:length(bestList) != 0}">
-							<c:forEach items="${bestList}" var="list" varStatus="i">
+						<c:when test="${fn:length(rslt.bestList) != 0}">
+							<c:forEach items="${rslt.bestList}" var="list" varStatus="i">
+								<!-- 개강일 classStartDtNum -->
+								<fmt:parseDate value="${list.classStartDt}" var="classStartDtParseDate" pattern="yyyy-MM-dd"/>
+								<fmt:parseNumber value="${classStartDtParseDate.time / (1000*60*60*24)}" integerOnly="true" var="classStartDtNum"/>
 								<div class="list2_item">
 									<a href="${basePath}/offclass/a/t/selectOffClassDetail.do?classId=${list.classId }">
 										<div class="img_wrap">
 											<div class="img">
 												<img src="${uploadPath}/<c:out value="${list.imgSrc }"/>" alt="" />
+												<c:choose>
+													<c:when test="${classStartDtNum < todayNum or list.classSt eq 4}">
+														<div class="dim"></div>
+														<div class="dim_txt">종료</div>
+													</c:when>
+													<c:when test="${list.classSt eq 3}">
+														<div class="dim"></div>
+														<div class="dim_txt">신청마감</div>
+													</c:when>
+													<c:otherwise>
+														<div class="label_r label_vio">${((todayNum - classStartDtNum)*-1) +1 }일 남았어요!</div>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 										<div class="text_wrap">
@@ -139,7 +158,7 @@
 			</div>
 			<!--//스페셜멘토 리스트-->
 			<!--멘토지원 배너-->
-			<div class="img_bn">
+			<div class="img_bn" onclick="javascript:fn_mentoApply();" style="position:relative; z-index:9999;">
 				<img src="${imagePath}/temp/bn_mentor.jpg" />
 			</div>
 			<!--//멘토지원 배너-->
@@ -178,6 +197,11 @@ var fn_imgMove = function(gubun) {
 			$("#slideNumText").text(current.attr("photoNum")*1-1);
 		}
 	}
+};
+
+//멘토지원
+var fn_mentoApply = function() {
+	location.href = "${basePath}/mento/a/n/mentoApply.do";
 };
 </script>
 </body>

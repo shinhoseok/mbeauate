@@ -1,6 +1,8 @@
 package com.beauate.m.home.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,13 +10,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import com.beauate.m.common.service.DateUtil;
 import com.beauate.m.common.service.StringUtil;
 import com.beauate.m.home.service.HomeService;
 import com.beauate.m.offClass.service.ClassVO;
 import com.beauate.m.offClass.service.OffClassDao;
 
+import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
+
 @Service("homeService")
-public class HomeServiceImpl implements HomeService {
+public class HomeServiceImpl extends EgovAbstractServiceImpl implements HomeService {
 	protected Log log = LogFactory.getLog(this.getClass());
 	
 	@Resource(name="offClassDao")
@@ -38,15 +43,23 @@ public class HomeServiceImpl implements HomeService {
 	 * @return
 	 * @throws Exception
 	 */ 
-	public List<ClassVO> selectMainList(ClassVO classVO) throws Exception {
+	public Map<String, Object> selectMainList(ClassVO classVO) throws Exception {
+		Map<String, Object> rsltMap = new HashMap<String, Object>();
 		//최신순 8장
 		classVO.setImgCnt("8");
-		classVO.setSortSubject("classStartDt");
+		classVO.setSortSubject("newOffClass");
 		List<ClassVO> bestList = offClassDao.selectOffClassList(classVO);
 		if(bestList != null) {
 			bestList = fullImgPathChang(bestList);
 		}
-		return bestList;
+		
+		//오늘날짜
+		String today = DateUtil.getCurrentYearMonthDay();
+		
+		rsltMap.put("bestList", bestList);
+		rsltMap.put("today", today);
+		
+		return rsltMap;
 	}
 	
 	//이미지 경로를 WAS의 경로로 변환한다.
