@@ -82,12 +82,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectMyPageList
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param payVO
 	 * @param model
@@ -116,12 +116,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectApplyClassList
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param payVO
 	 * @return Map<String, Object>
@@ -215,12 +215,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectJjimList
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param payVO
@@ -294,12 +294,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : deletePayProc
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param payVO
@@ -327,12 +327,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updatePayRefundProc
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param payVO
@@ -367,12 +367,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : deleteJjimProc
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param jjimVO
@@ -398,12 +398,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : insertReviewProc
 	 * @date : 2019. 5. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 16  신호석			                    최초 작성 
+	 *	2019. 5. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param reviewVO
@@ -422,12 +422,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectUserReviewCnt
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param reviewVO
@@ -445,12 +445,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectUserReviewCnt
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param reviewVO
 	 * @return Map<String, Object>
@@ -522,12 +522,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectUserReviewCnt
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param reviewVO
 	 * @return Map<String, Object>
@@ -544,12 +544,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectCouponListCnt
 	 * @date : 2019. 10. 12.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일					작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	2019. 10. 12  		뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param couponVO
 	 * @return Map<String, Object>
@@ -568,12 +568,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectCouponList
 	 * @date : 2019. 10. 12.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일					작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	2019. 10. 12  		뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param couponVO
 	 * @return Map<String, Object>
@@ -621,12 +621,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : selectPayHisotryAjaxList
 	 * @date : 2019. 10. 12.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일					작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	2019. 10. 12  		뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param couponVO
 	 * @return Map<String, Object>
@@ -678,12 +678,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updateMyInfo
 	 * @date : 2019. 10. 12.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일					작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	2019. 10. 12  		뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @return UserVO
@@ -707,12 +707,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updateMyInfo
 	 * @date : 2019. 10. 12.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일					작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 12  		신호석			                    최초 작성 
+	 *	2019. 10. 12  		뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @return UserVO
@@ -736,12 +736,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updatePasswordProc
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @return void
@@ -761,12 +761,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updateMblPnoProc
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @return void
@@ -783,12 +783,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : deleteMemberProc
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @return void
@@ -805,12 +805,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : insertUserReview
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param classVO
 	 * @return String
@@ -834,12 +834,12 @@ public class MyPageServiceImpl extends EgovAbstractServiceImpl implements MyPage
 	 * </pre>
 	 * @Method Name : updateUserReview
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param reviewVO
 	 * @return ReviewVO

@@ -77,12 +77,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectOffClassList
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param classVO
 	 * @return
@@ -167,12 +167,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectAllOffClassList
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userVO
@@ -226,12 +226,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectOffClassTabList
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userVO
@@ -276,12 +276,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectOffClassDetail
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userVO
@@ -350,12 +350,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectReviewList
 	 * @date : 2019. 10. 16.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일			작성자					변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 16  신호석			                    최초 작성 
+	 *	2019. 10. 16  뷰아떼1			                    최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param reviewVO
@@ -484,12 +484,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectOffClassApplyDetail
 	 * @date : 2019. 10. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	2019. 10. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param classVO
@@ -545,12 +545,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : selectClassMemChk
 	 * @date : 2019. 10. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	2019. 10. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param payVO
@@ -582,12 +582,12 @@ public class OffClassServiceImpl extends EgovAbstractServiceImpl implements OffC
 	 * </pre>
 	 * @Method Name : insertPayProc
 	 * @date : 2019. 10. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 10. 17.		신호석				최초 작성 
+	 *	2019. 10. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param payVO

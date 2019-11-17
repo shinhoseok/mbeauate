@@ -47,12 +47,12 @@ public class UserServiceImpl extends EgovAbstractServiceImpl implements UserServ
 	 * </pre>
 	 * @Method Name : selectUserIdChk
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userVO
@@ -71,12 +71,12 @@ public class UserServiceImpl extends EgovAbstractServiceImpl implements UserServ
 	 * </pre>
 	 * @Method Name : insertUserProc
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userVO
@@ -116,12 +116,12 @@ public class UserServiceImpl extends EgovAbstractServiceImpl implements UserServ
 	 * </pre>
 	 * @Method Name : insertUserStatisticsProc
 	 * @date : 2019. 6. 22.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 6. 22.		신호석				최초 작성 
+	 *	2019. 6. 22.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * 
 	 * @param userStatsVO
@@ -141,12 +141,12 @@ public class UserServiceImpl extends EgovAbstractServiceImpl implements UserServ
 	 * </pre>
 	 * @Method Name : selectUser
 	 * @date : 2019. 5. 17.
-	 * @author : 신호석
+	 * @author : 뷰아떼1
 	 * @history : 
 	 *	-----------------------------------------------------------------------
 	 *	변경일				작성자						변경내용  
 	 *	----------- ------------------- ---------------------------------------
-	 *	2019. 5. 17.		신호석				최초 작성 
+	 *	2019. 5. 17.		뷰아떼1				최초 작성 
 	 *	-----------------------------------------------------------------------
 	 * @param userVO
 	 * @param 

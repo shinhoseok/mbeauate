@@ -37,7 +37,7 @@
 						<div class="member-join">
 							<h3>약관동의</h3>
 							<div class="rcont">
-								<label><span class="input-checkbox"><input type="checkbox" id="insertUserChk"></span><span class="emp">필수</span> 뷰아떼의 이용약관, 개인정보 취급방침, 멘티약관, 멘토약관에 동의합니다.</label>
+								<label><span class="input-checkbox"><input type="checkbox" id="insertUserChk"></span><span class="emp">필수</span> 뷰아떼의 이용약관, 개인정보 취급방침에 동의합니다.</label>
 							</div>
 							<h3 class="tit_info">정보입력</h3>
 							<div class="rcont">

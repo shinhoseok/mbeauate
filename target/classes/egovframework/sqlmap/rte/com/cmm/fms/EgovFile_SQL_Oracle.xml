@@ -66,7 +66,7 @@
 			  #orignlFileNm#, #fileExtsn#, #fileMg#, #fileCn# )			
 		]]>
 	</insert>	
-	<!-- 신호석 -->
+	<!-- 뷰아떼1 -->
 	<update id="FileManageDAO.updateFileDetail" parameterClass="FileVO">
 		UPDATE COMTNFILEDETAIL
 			SET FILE_STRE_COURS = #fileStreCours#,
