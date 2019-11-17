@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beauate.m.board.service.BoardDao">
+	
+	<resultMap type="boardVO" id="boardResultMap">
+		<result column="POST_SQ" property="postId" />
+		<result column="IMG_SQ" property="atchFileId" />
+		<result column="POST_DT" property="postDt" />
+		<result column="POST_CATEGORY_ST" property="postCategorySt" />
+		<result column="POST_TITLE" property="postTitle" />
+		<result column="POST_SUB_TITLE" property="postSubTitle" />
+		<result column="POST_CTT" property="postCtt" />
+		<result column="POST_FL" property="delYn" />
+		<result column="imgSrc" property="imgSrc" />
+		<result column="cpn_sq" property="couponId" />
+	</resultMap>
+
+	<sql id="boardGubunSql">
+		<where>
+			POST_FL = 'N'
+			<if test="adminYn != null and adminYn != ''">
+				<choose>
+					<when test="postCategorySt == '1'">
+						AND B.post_category_st = #{postCategorySt}
+					</when>
+					<when test="postCategorySt == '2'">
+						AND B.post_category_st = #{postCategorySt}
+					</when>
+					<when test="postCategorySt == '3'">
+						AND B.post_category_st = #{postCategorySt}
+					</when>
+					<otherwise>
+						AND B.post_category_st = #{postCategorySt}
+					</otherwise>
+				</choose>
+			</if>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<choose>
+					<when test="searchCondition == 'post_title'">
+						AND B.post_title LIKE '%'|| #{searchKeyword} ||'%'
+					</when>
+					<otherwise>
+						AND B.post_category_st LIKE '%'|| #{searchKeyword} ||'%'
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 
+	쿼리명 : 게시판 관리 리스트
+	  설명 : 게시판 관리 리스트
+	수정일      		수정자  	수정내용
+	==========  ======  ===================
+	2019. 5.12	신호석		최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.12
+	-->		
+	<select id="selectBoardMngList" parameterType="boardVO" resultMap="boardResultMap">
+		<![CDATA[
+		SELECT A.*
+		  FROM (SELECT ROW_NUMBER () OVER (
+		]]>	
+		<choose>
+			<when test="sortSubject == 'postId'">
+			ORDER BY B.post_sq
+			</when>
+			<when test="sortSubject == 'postCategorySt'">
+			ORDER BY B.post_category_st
+			</when>
+			<when test="sortSubject == 'postTitle'">
+			ORDER BY B.post_title
+			</when>
+			<when test="postCategorySt == '4'.toString">
+			ORDER BY B.post_sub_title
+			</when>
+			<otherwise>
+			ORDER BY B.post_dt
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="sortDescend == 'asc'">
+			ASC
+			</when>
+			<when test="postCategorySt == '4'.toString">
+			ASC
+			</when>
+			<otherwise>
+			DESC
+			</otherwise>
+		</choose>
+  			 ) RNUM,
+               B.post_sq,
+               B.img_sq,
+               <if test="adminYn != null or adminYn != '' or adminYn != Y">
+               (SELECT c.file_stre_cours || '/' || c.stre_file_nm FROM comtnfiledetail c WHERE atch_file_id = B.img_sq AND file_cn = 'M') AS imgSrc,
+               </if>
+               B.post_dt,
+               B.post_category_st,
+               B.post_title,
+               B.post_sub_title,
+               B.post_ctt,
+               B.post_fl
+          FROM ADMIN_POST B
+		<include refid="boardGubunSql"/>
+		<![CDATA[
+		       ) A
+		 WHERE A.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+		]]>		
+	</select>
+	
+	<!-- 
+	쿼리명 : 게시판 관리 리스트 카운트
+	  설명 : 게시판 관리 리스트 카운트
+	수정일     		 수정자 	 수정내용
+	==========  ======  ===================
+	2019. 5.12	신호석		최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.12
+	-->	
+	<select id="selectBoardMngListCnt" parameterType="boardVO" resultType="int">
+		<![CDATA[
+		SELECT COUNT (*) CNT FROM ADMIN_POST B
+		]]>
+		<include refid="boardGubunSql"/>	
+	</select>
+	
+	<!-- 
+	쿼리명 : 게시판 관리 상세 조회
+	  설명 : 게시판 관리 상세 조회
+	수정일      		수정자  	수정내용
+	==========  ======  ===================
+	2019. 5.16 	 신호석 	 최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 5.16
+	-->	
+	<select id="selectBoardMngDetail" parameterType="boardVO" resultMap="boardResultMap">
+		SELECT a.post_sq,
+			   a.img_sq,
+			<if test="adminYn != null and adminYn != ''">
+			   (SELECT b.file_stre_cours || '/' || b.stre_file_nm FROM comtnfiledetail b WHERE b.atch_file_id = a.img_sq AND file_cn='D') AS imgSrc,
+			</if>
+			   a.post_dt,
+			   a.post_category_st,
+			   a.post_title,
+			   a.post_sub_title,
+			   a.post_ctt,
+			   a.post_fl,
+			   a.cpn_sq
+		  FROM ADMIN_POST a
+		 WHERE post_sq = #{postId, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 
+	쿼리명 : 게시판 관리 상세 다음글, 이전글
+	  설명 : 게시판 관리 상세 다음글, 이전글
+	수정일      		수정자  	수정내용
+	==========  ======  ===================
+	2019. 10.16 	 신호석 	 최초 생성
+	작성자 : 신호석
+	최초작성일 : 2019. 10.16
+	-->	
+	<select id="selectBoardNextPrev" parameterType="boardVO" resultMap="boardResultMap">
+		SELECT a.post_sq,
+			   a.img_sq,
+			   (SELECT b.file_stre_cours || '/' || b.stre_file_nm FROM comtnfiledetail b WHERE b.atch_file_id = a.img_sq AND file_cn='D') AS imgSrc,
+			   a.post_dt,
+			   a.post_category_st,
+			   a.post_title,
+			   a.post_sub_title,
+			   a.post_ctt,
+			   a.post_fl
+		  FROM ADMIN_POST a
+		<where>
+			<if test="nextYn != null and nextYn != ''">
+				<choose>
+					<when test='nextYn == "Y"'>
+						SUBSTR(a.post_sq, 5) IN (
+							SELECT
+								MIN(SUBSTR(b.post_sq, 5))
+							FROM
+								ADMIN_POST b
+							WHERE
+								SUBSTR(b.post_sq, 5) <![CDATA[ > ]]> #{postId}
+								AND b.post_category_st = #{postCategorySt}
+						)
+					</when>
+					<otherwise>
+						SUBSTR(a.post_sq, 5) IN (
+							SELECT
+								MAX(SUBSTR(b.post_sq, 5))
+							FROM
+								ADMIN_POST b
+							WHERE
+								SUBSTR(b.post_sq, 5) <![CDATA[ < ]]> #{postId}
+								AND b.post_category_st = #{postCategorySt}
+						)
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+</mapper>

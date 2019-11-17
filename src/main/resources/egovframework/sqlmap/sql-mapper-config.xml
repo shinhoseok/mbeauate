@@ -37,5 +37,7 @@
 		<typeAlias alias="alarmVO" type="com.beauate.m.alarm.service.AlarmVO"/>
 		<!-- 취소환불VO -->
 		<typeAlias alias="refundVO" type="com.beauate.m.refund.service.RefundVO"/>
+		<!-- 게시판 VO -->
+		<typeAlias alias="boardVO" type="com.beauate.m.board.service.BoardVO"/>
 	</typeAliases>
 </configuration>
