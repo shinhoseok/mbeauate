@@ -83,5 +83,14 @@ var fn_sns = function(param) {
   ChannelIO('boot', {
     "pluginKey": "58472c3c-9a08-4d7c-a671-96de913e4d6e"
   });
+
+// $(window).load(function() {
+// $(window).ready(function(){
+// 	alert($(".sc-bxivhb.fomTXD").val());
+// // 	$(".sc-bxivhb.fomTXD").css('margin-bottom', '300px');
+// });
+// $(function() {
+	
+// });
 </script>
 <!-- End Channel Plugin -->
