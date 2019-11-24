@@ -14,13 +14,13 @@
 <link rel="stylesheet" type="text/css" href="${cssPath}/input.css">
 <script type="text/javascript" src="${scriptPath}/jquery/jquery-1.11.2.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153183121-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153202651-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-153183121-1');
+  gtag('config', 'UA-153202651-1');
 </script>
 </head>
 <body>
