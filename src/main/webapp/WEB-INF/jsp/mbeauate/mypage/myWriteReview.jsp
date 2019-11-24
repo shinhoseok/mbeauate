@@ -8,6 +8,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
 <meta name="keywords" content="">
+<meta name="naver-site-verification" content="c03e63b14e10bb3c48bb213c40e148287b19ea7f"/>
 <title>BEAUATE</title>
 <link href="" rel="shortcut icon" type="image/x-icon">
 <link rel="apple-touch-icon-precomposed" href="">

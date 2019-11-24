@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="format-detection" content="telephone=no">
+<meta name="naver-site-verification" content="c03e63b14e10bb3c48bb213c40e148287b19ea7f"/>
 <title>BEAUATE</title>
 <link rel="stylesheet" type="text/css" href="${cssPath}/common.css" />
 <link rel="stylesheet" type="text/css" href="${cssPath}/reset.css" />
