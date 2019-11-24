@@ -22,12 +22,13 @@
 		<section>
 			<!--메인배너-->
 			<div class="main_bn">
-				<div class="swiper-bar"></div>
+				<!--<div class="swiper-bar"></div>
 				<div class="swiper-scrollbar"></div>
-				<div class="swiper-num num">1/9</div>
-				<img src="${imagePath}/temp/main_bn_img.jpg"/>
+				<div class="swiper-num num">1/9</div>-->
+				<a href="javascript:fn_mentoApply();"><img src="${imagePath}/temp/main_bn_img.jpg"/></a>
 			</div>
 			<!--//메인배너-->
+			<div class="notice_1121"><img src="${imagePath}/temp/notice_1121.jpg"/></div>
 			<!--전문가 교육소식-->
 			<div class="about_class">
 				<h2>전문가 교육소식</h2>

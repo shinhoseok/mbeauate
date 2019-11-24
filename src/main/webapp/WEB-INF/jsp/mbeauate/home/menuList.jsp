@@ -13,6 +13,15 @@
 <link rel="stylesheet" type="text/css" href="${cssPath}/reset.css" />
 <link rel="stylesheet" type="text/css" href="${cssPath}/input.css">
 <script type="text/javascript" src="${scriptPath}/jquery/jquery-1.11.2.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153183121-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-153183121-1');
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -60,7 +69,9 @@
 						<li><a class="btn_arr_big" href="javascript:alert('준비중 입니다.');">온라인 클래스</a></li>
 						<li><a class="btn_arr_big" href="${basePath}/intro/a/n/intro.do">뷰아떼 소개</a></li>
 						<li><a class="btn_arr_big" href="${basePath}/board/a/n/selectBoardList.do">공지사항</a></li>
-						<li><a class="btn_arr_big" href="${basePath}/login/a/n/logOut.do">로그아웃</a></li>
+						<c:if test="${not empty sessionScope.loginVO.usrId or '' eq sessionScope.loginVO.usrId}">
+							<li><a class="btn_arr_big" href="${basePath}/login/a/n/logOut.do">로그아웃</a></li>
+						</c:if>
 					</ul>
 				</div>
 				<div class="h60"></div>
@@ -76,4 +87,4 @@
 
 </script>
 </body>
-</htm>
+</html>

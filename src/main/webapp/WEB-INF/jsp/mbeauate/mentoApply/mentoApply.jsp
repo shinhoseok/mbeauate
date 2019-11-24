@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="${cssPath}/reset.css" />
 <link rel="stylesheet" type="text/css" href="${cssPath}/input.css">
 <script type="text/javascript" src="${scriptPath}/jquery/jquery-1.11.2.min.js"></script>
+
 </head>
 <body>
 	<header>
@@ -28,9 +29,10 @@
 			<img src="${imagePath}/sub/apply_mentor.jpg">
 		</div>
 		<div class="btn_more">
-			<a href="https://forms.gle/3Bi1mRtwbUTg8w3f9" target="_blank">지원하기</a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSc5IGItP9eE3PQsKhQydU2ebI9AdXOerBo8OCXbd4Drore7tA/viewform" target="_blank">지원하기</a>
 			<!--메뉴-->
 		</div>
+		<div class="h60"></div>
 		<div id="floating_menu">
 			<%@ include file="/WEB-INF/jsp/mbeauate/common/menu.jsp"%>
 		</div>

@@ -125,12 +125,12 @@
 <%-- 					<img src="${imagePath}/sub/class_map.jpg" /> --%>
 					<p style="margin-top:-12px">
 					    <em class="link">
-					        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-					            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-					        </a>
+<!-- 					        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')"> -->
+<!-- 					            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. -->
+<!-- 					        </a> -->
 					    </em>
 					</p>
-					<div id="map" style="width:100%;height:350px;"></div>
+					<div id="map" style="width:100%;height:220px;"></div>
 				</div>
 			</div>
 			<div class="class_ask" id="ask">
@@ -335,12 +335,10 @@ geocoder.addressSearch('${rslt.resultVO.classAdr }', function(result,
 		map.setCenter(coords);
 	}
 });
-// 마우스 드래그와 모바일 터치를 이용한 지도 이동을 막는다
-map.setDraggable(false);
 // 지도 타입 변경 컨트롤을 생성한다
 var mapTypeControl = new kakao.maps.MapTypeControl();
 // 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+// map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도에 확대 축소 컨트롤을 생성한다
 var zoomControl = new kakao.maps.ZoomControl();
 // 지도의 우측에 확대 축소 컨트롤을 추가한다

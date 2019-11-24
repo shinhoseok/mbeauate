@@ -84,15 +84,15 @@ var fn_login = function() {
 		$("#usrPw").parent().find("span").text("패스워드 입력해 주세요").show();
 		isValid = false;
 	}
-	if (!TypeChecker.email($("#emailAddr").val())) {
+	if (!TypeChecker.email($.trim($("#emailAddr").val()))) {
 		$("#emailAddr").parent().find("span").text("이메일은 "+TypeChecker.emailText).show();
 		isValid = false;
 	}
 	if(!isValid){
 		return;
 	}
-	var emailAddr = $("#emailAddr").val();
-	var usrPw = $("#usrPw").val();
+	var emailAddr = $.trim($("#emailAddr").val());
+	var usrPw = $.trim($("#usrPw").val());
 	
 	//아이디체크
 	$.ajax({
